@@ -19,7 +19,6 @@ public class ShipShooting : MonoBehaviour {
 	
 	//Gun
 	GunType actualGun;
-	float damage;
 	GameObject leftGun;
 	GameObject rightGun;
 	public ParticleSystem MuzzleLeft;
@@ -43,7 +42,7 @@ public class ShipShooting : MonoBehaviour {
 		col = GetComponent<Collider>();
 		cooldownTimer = 0.0f;
 		cooldown = 0.3f;
-		damage = 10.0f;
+		//damage = 10.0f;
 		autoaim = false;
 	}
 	

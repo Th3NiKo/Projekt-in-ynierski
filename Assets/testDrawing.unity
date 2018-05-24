@@ -130,6 +130,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 1159079797425826, guid: c57568b95fc0c6747afabca072d267a4, type: 2}
+  material: {fileID: 2100000, guid: 7462b443e9f49804e8cf8566466e5ed6, type: 2}
+  smooth: 0.03
+  thickness: 0.15
 --- !u!1 &449766323
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +365,8 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 96704087251953206, guid: 302f92526c20bed4d9112daf4e2ec660, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 302f92526c20bed4d9112daf4e2ec660, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1954599581

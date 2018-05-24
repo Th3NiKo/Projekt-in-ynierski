@@ -22,7 +22,7 @@ public class ShipStats : MonoBehaviour {
 		if(other.transform.tag == "Meteor"){
 			
 			TakeDamage();
-			Destroy(other.gameObject);
+			other.transform.GetComponent<Target>().TakeDamage(20);
 		}
 	}
 

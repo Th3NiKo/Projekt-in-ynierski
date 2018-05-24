@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    Myszka input;
     public GameObject Block;
     public Material nonClicked;
     public Material pointer;
@@ -12,9 +11,8 @@ public class GameManager : MonoBehaviour {
     public List <GameObject> blocks;
     GameObject selected;
     void Start(){
-        CreateYenga(8);
+        CreateYenga(15);
         blocks = new List <GameObject>();
-        input = GetComponent<Myszka>();
         selected = null;
     }
 

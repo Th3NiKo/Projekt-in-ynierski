@@ -13,6 +13,9 @@ public class Kursor3D : MonoBehaviour {
 
 	public Material Clicked;
 	public Material NonClicked;
+	//public GameObject block;
+	//HingeJoint test;
+	//Rigidbody rgb;
 
 	bool isClicked;
 	bool isPressed;
@@ -28,10 +31,14 @@ public class Kursor3D : MonoBehaviour {
 		lastPosition = position;
 		obj = null;
 		isPressed = false;
+		//test = block.GetComponent<HingeJoint>();
+		//rgb = GetComponent<Rigidbody>();
+		//test.connectedBody = rgb;
 	}
 	
 	
 	void Update () {
+		
 		if(Input.GetKey(KeyCode.LeftArrow)){
 			position = Vector3.Lerp(position, position + new Vector3(-0.1f, 0.0f, 0.0f),t);
 		} if(Input.GetKey(KeyCode.RightArrow)){
@@ -60,11 +67,14 @@ public class Kursor3D : MonoBehaviour {
 		}
 
 		if(obj != null){
-			if(isClicked){
-				obj.transform.position =  Vector3.Lerp(obj.transform.position, (position - lastPosition) + obj.transform.position,1.0f);
-				//obj.transform.SetParent(this.transform, true);
-			}
-			
+			obj.transform.position = this.transform.position;
+				//obj.transform.position =  Vector3.Lerp(obj.transform.position, (position - lastPosition) + obj.transform.position,1.0f);
+			if(obj.GetComponent<HingeJoint>() != null){
+					HingeJoint temp = obj.GetComponent<HingeJoint>();
+					temp.connectedBody = GetComponent<Rigidbody>();
+										temp.connectedAnchor = this.transform.position;
+					temp.anchor = this.transform.position;
+				}
 		}
 		delta = lastPosition - position;
 		lastPosition = position;
@@ -83,44 +93,26 @@ public class Kursor3D : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		
 		if(other.tag == "Block"){
-			obj = other;
 			if(isPressed){
-				other.GetComponent<Rigidbody>().useGravity = false;
-				other.GetComponent<Rigidbody>().isKinematic = true;
-			} else {
-				other.GetComponent<Rigidbody>().useGravity = true;
-				other.GetComponent<Rigidbody>().isKinematic = false;
+				if(other.GetComponent<HingeJoint>() != null){
+					HingeJoint temp = other.GetComponent<HingeJoint>();
+					temp.connectedBody = GetComponent<Rigidbody>();
+					temp.connectedAnchor = this.transform.position;
+					temp.anchor = this.transform.position;
+				}
+				obj = other;
 			}
 			other.GetComponent<MeshRenderer>().material = Clicked;
 		} 
 	}
 
-	void OnTriggerStay(Collider other)
-	{
-		if(other.tag == "Block"){
-			other.GetComponent<MeshRenderer>().material = Clicked;
-			
-			if(isClicked){
-					obj = other;
-					other.GetComponent<Rigidbody>().useGravity = false;
-					other.GetComponent<Rigidbody>().isKinematic = true;
-				} else {
-					other.GetComponent<Rigidbody>().useGravity = true;
-					other.GetComponent<Rigidbody>().isKinematic = false;
-				}
-		}
-	}
+
 
 	void OnTriggerExit(Collider other) {
 		
 		if(other.tag == "Block"){
-			obj = null;
-			if(!isClicked){
-				other.GetComponent<Rigidbody>().useGravity = true;
-				other.GetComponent<Rigidbody>().isKinematic = false;
-				other.GetComponent<MeshRenderer>().material = NonClicked;
-			}
-			
+			//obj = null;
+			other.GetComponent<MeshRenderer>().material = NonClicked;
 		} 
 	}
 }
