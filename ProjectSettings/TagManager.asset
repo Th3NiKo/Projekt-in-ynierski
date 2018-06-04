@@ -8,6 +8,8 @@ TagManager:
   - Kursor
   - Meteor
   - Mesh
+  - Pin
+  - Ball
   layers:
   - Default
   - TransparentFX
