@@ -61,7 +61,7 @@ public class ShipShooting : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		//Crosshair();
+		Crosshair();
 	}
 
 	void Shoot(){

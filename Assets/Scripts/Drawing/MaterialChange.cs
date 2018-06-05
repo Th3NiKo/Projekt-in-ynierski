@@ -30,7 +30,6 @@ public class MaterialChange : MonoBehaviour {
 
 	void OnTriggerStay(Collider other)
 	{
-		Debug.Log(other.name);
 		if(other.tag == "Kursor"){
 			if(kursor.IsPressed()){
 				other.transform.GetChild(0).GetComponent<Drawing>().material = thisMaterial;

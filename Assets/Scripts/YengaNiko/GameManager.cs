@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
     public List <GameObject> blocks;
     GameObject selected;
     void Start(){
-        CreateYenga(15);
+        CreateYenga(7);
         blocks = new List <GameObject>();
         selected = null;
     }
