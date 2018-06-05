@@ -25,7 +25,7 @@ public class BowlingBall : MonoBehaviour {
     void Update()
     {
         if (Input.GetKey(KeyCode.Space))
-            GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -force));
+            GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, force));
         if (Input.GetKey(KeyCode.RightArrow))
             GetComponent<Rigidbody>().AddForce(new Vector3(1, 0, 0), ForceMode.Impulse);
         if (Input.GetKey(KeyCode.LeftArrow))

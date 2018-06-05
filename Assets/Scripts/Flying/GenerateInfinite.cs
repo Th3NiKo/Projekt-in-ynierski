@@ -19,6 +19,7 @@ class Tile
 public class GenerateInfinite : MonoBehaviour {
 
     public GameObject plane;
+    public GameObject heightPlane;
     public GameObject player;
 
     int planeSize = 10;
@@ -38,10 +39,16 @@ public class GenerateInfinite : MonoBehaviour {
 
         for(int x = -halfTilesX; x < halfTilesX; x++)
         {
-            for (int z = -halfTilesZ; z < halfTilesZ; z++)
+            for (int z = -halfTilesZ / 5; z < halfTilesZ; z++)
             {
+                
                 Vector3 pos = new Vector3((x * planeSize + startPos.x), -5, (z * planeSize + startPos.z));
-                GameObject t = (GameObject)Instantiate(plane, pos, Quaternion.identity);
+                GameObject t;
+                if(Random.Range(0.0f, 1.0f) >= 0.9f){
+                    t = (GameObject)Instantiate(plane, pos, Quaternion.identity);
+                } else {
+                    t = (GameObject)Instantiate(heightPlane, pos, Quaternion.identity);
+                }
 
                 string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
                 t.name = tilename;
@@ -65,12 +72,17 @@ public class GenerateInfinite : MonoBehaviour {
          int playerZ = (int)(Mathf.Floor(player.transform.position.z/planeSize)*planeSize);
 
          for(int x = -halfTilesX;x < halfTilesX; x++){
-             for(int z = -halfTilesZ; z <halfTilesZ; z++){
+             for(int z = -halfTilesZ / 5; z <halfTilesZ; z++){
                  Vector3 pos = new Vector3((x * planeSize + playerX),-5,(z * planeSize + playerZ));
                  string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
 
                  if(!tiles.ContainsKey(tilename)){
-                     GameObject t = (GameObject) Instantiate(plane, pos, Quaternion.identity);
+                     GameObject t;
+                    if(Random.Range(0.0f, 1.0f) >= 0.9f){
+                        t = (GameObject)Instantiate(plane, pos, Quaternion.identity);
+                    } else {
+                        t = (GameObject)Instantiate(heightPlane, pos, Quaternion.identity);
+                     }
                      t.name = tilename;
                      Tile tile = new Tile(t, updateTime);
                      tiles.Add(tilename, tile);

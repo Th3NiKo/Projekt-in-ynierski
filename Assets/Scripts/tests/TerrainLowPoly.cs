@@ -49,7 +49,7 @@ public class TerrainLowPoly : MonoBehaviour {
             vertIndex -= 1;
             usedVerts.Add(vertIndex);
             vertices[vertIndex] = new Vector3(vertices [vertIndex].x,tileheigt, vertices [vertIndex].z);
-            vertIndex -= terrainSize;
+            vertIndex -= 1;
             usedVerts.Add(vertIndex);
             vertices[vertIndex] = new Vector3(vertices [vertIndex].x,tileheigt, vertices [vertIndex].z);
             vertIndex -= 1;

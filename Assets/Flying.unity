@@ -11884,14 +11884,14 @@ GameObject:
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1170206992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1170206991}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10982681998024a4d9da185ec1f34911, type: 3}
   m_Name: 
@@ -15618,6 +15618,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plane: {fileID: 1935634779390222, guid: 9b34cc38808ea21438ffbcccba54eb59, type: 2}
+  heightPlane: {fileID: 1935634779390222, guid: 9b34cc38808ea21438ffbcccba54eb59,
+    type: 2}
   player: {fileID: 1895613958}
 --- !u!1 &1882068034
 GameObject:
