@@ -4591,7 +4591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &640006578
 Transform:
   m_ObjectHideFlags: 0
@@ -4719,7 +4719,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1883008604
+  randomSeed: 1408225573
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11884,7 +11884,7 @@ GameObject:
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1170206992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15553,6 +15553,7 @@ GameObject:
   - component: {fileID: 1751397112}
   - component: {fileID: 1751397111}
   - component: {fileID: 1751397110}
+  - component: {fileID: 1751397113}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -15605,6 +15606,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1751397113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1751397109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e5196674943a643b1a873a739978ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plane: {fileID: 1935634779390222, guid: 9b34cc38808ea21438ffbcccba54eb59, type: 2}
+  player: {fileID: 1895613958}
 --- !u!1 &1882068034
 GameObject:
   m_ObjectHideFlags: 0
@@ -15891,8 +15905,8 @@ Camera:
   m_GameObject: {fileID: 1938710479}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.21799307, g: 0.37341404, b: 0.61764705, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -15900,7 +15914,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 60
   field of view: 60
   orthographic: 0
   orthographic size: 5

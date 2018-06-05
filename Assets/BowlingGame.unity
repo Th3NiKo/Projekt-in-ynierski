@@ -684,8 +684,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 0.3
+    height: 0.3
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 29.6
@@ -697,7 +697,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266295c4773cfd543989b6c8ac76e578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: -2500
+  force: -250
 --- !u!1 &1767239726 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: aa6f5707e9154c04b92c937fc2c64259, type: 3}
