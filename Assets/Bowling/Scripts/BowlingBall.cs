@@ -24,11 +24,11 @@ public class BowlingBall : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
             GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -force));
-        if (Input.GetKeyUp(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
             GetComponent<Rigidbody>().AddForce(new Vector3(1, 0, 0), ForceMode.Impulse);
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
             GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, 0), ForceMode.Impulse);
         if (Input.GetKeyUp(KeyCode.R))
         {
