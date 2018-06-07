@@ -20,7 +20,7 @@ public class MeteorSpawner : MonoBehaviour {
 			int randomMeteor = Random.Range(0,meteors.Length - 1);
 			Vector3 size = new Vector3(Random.Range(0.8f, 1.2f),Random.Range(0.8f, 1.2f),Random.Range(0.8f, 1.2f));
 			Quaternion obrot = Quaternion.Euler(new Vector3(Random.Range(0.0f, 180.0f),Random.Range(0.0f, 180.0f),Random.Range(0.0f, 180.0f)));
-			GameObject meter = Instantiate(meteors[randomMeteor],new Vector3(Random.Range(this.transform.position.x, 9.0f), Random.Range(-2.0f, 4.0f), this.transform.position.z), obrot);
+			GameObject meter = Instantiate(meteors[randomMeteor],new Vector3(Random.Range(this.transform.position.x, 9.0f), Random.Range(9.0f, 15.0f), this.transform.position.z), obrot);
 			speedUp = Mathf.Clamp(speedUp, 2 * -40, -3);
 			meter.GetComponent<Rigidbody>().velocity += new Vector3(0.0f, 0.0f, speedUp);
 			meter.transform.localScale = size;

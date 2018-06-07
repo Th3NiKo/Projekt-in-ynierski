@@ -16,7 +16,8 @@ public class MeteorDestroyer : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision other) {
 		if(other.transform.tag == "Meteor"){
-			Destroy(other.gameObject);
+			if(other.transform.parent != null)
+				Destroy(other.transform.parent.gameObject);
 		}
 	}
 }

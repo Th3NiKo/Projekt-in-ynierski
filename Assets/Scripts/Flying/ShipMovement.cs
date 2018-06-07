@@ -23,7 +23,7 @@ public class ShipMovement : MonoBehaviour {
 	void Update () {
 		if(canMove){
 			transform.position += new Vector3(kursor.delta.x, kursor.delta.y, kursor.delta.z) *  -18.0f;
-			transform.position = new Vector3(Mathf.Clamp(transform.position.x,0.0f, 12.0f), Mathf.Clamp(transform.position.y,-3.0f, 5.0f), transform.position.z);
+			transform.position = new Vector3(Mathf.Clamp(transform.position.x,0.0f, 12.0f), Mathf.Clamp(transform.position.y, 0.0f, 10.0f), transform.position.z);
 		
 		float z = 0.0f;
 		float y = 0.0f;
@@ -51,11 +51,12 @@ public class ShipMovement : MonoBehaviour {
 		} else if (kursor.delta.z < 0){
 			y -= 0.4f;
 		} 
-		
+		/* 
 		foreach(GameObject meteor in GameObject.FindGameObjectsWithTag("Meteor")){
-			meteor.GetComponent<MeteorFly>().speed -= y;
+			if(meteor.GetComponent<MeteorFly>() != null)
+				meteor.GetComponent<MeteorFly>().speed -= y;
 		}
-		meteorSpawner.SpeedChange(y);
+		meteorSpawner.SpeedChange(y); */
 		} else{
 			if(kursor.IsPressed()){
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

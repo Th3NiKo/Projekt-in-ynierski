@@ -29,13 +29,13 @@ public class Bullet : MonoBehaviour {
 		shootForward = value;
 	}
 
-	void OnCollisionEnter(Collision other) {
-		Target tar = other.collider.GetComponent<Target>();
+	void OnTriggerEnter(Collider other) {
+		Target tar = other.GetComponent<Target>();
 		if(tar != null){
-			tar.TakeDamage(5f);
+			tar.TakeDamage(10f);
 			if(tar.tag == "Meteor"){
 				//Shrink it out
-				other.transform.localScale = new Vector3(other.transform.localScale.x-0.2f ,other.transform.localScale.y-0.2f ,other.transform.localScale.z-0.2f );
+				//other.transform.localScale = new Vector3(other.transform.localScale.x-0.05f ,other.transform.localScale.y-0.05f ,other.transform.localScale.z-0.05f );
 				if(tar.health <= 0){
 					ShipStats.AddPoints(10);
 				}

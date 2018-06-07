@@ -88,7 +88,52 @@ ModelImporter:
     4300014: Asteroida_3_1
     4300016: Cube_2
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: asteroid_grid
+    second: {fileID: 2100000, guid: 70e1edd9a737e5a489a64d89e19375df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blastery
+    second: {fileID: 2100000, guid: 36dd9101eed9383448c3506cb1ab3dd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blastery_2
+    second: {fileID: 2100000, guid: f3bbf5e2631395a418f813b4bfca2336, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: engines
+    second: {fileID: 2100000, guid: 8ac7980148f21504a909c2ec7b89cd75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kolor_statku
+    second: {fileID: 2100000, guid: 235e38055b9df8546bfc323e70e8564d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: neony
+    second: {fileID: 2100000, guid: 5d06b3dce9591df488b44854b2fd0063, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: szyba
+    second: {fileID: 2100000, guid: fa13c7889fc98bd40bb2b7e830658adf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wentylacja
+    second: {fileID: 2100000, guid: 6e34edadd2a8e594d8289ed19eabdee8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wentylacja_2
+    second: {fileID: 2100000, guid: 8f39235aa3bbdd64e9347861fa769726, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

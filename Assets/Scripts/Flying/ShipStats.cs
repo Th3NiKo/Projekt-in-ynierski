@@ -22,12 +22,19 @@ public class ShipStats : MonoBehaviour {
 		if(other.transform.tag == "Meteor"){
 			
 			TakeDamage();
-			other.transform.GetComponent<Target>().TakeDamage(20);
+			if(other.transform.GetComponent<Target>() != null){
+				
+			} else if(other.transform.GetChild(0) != null){
+				if(other.transform.GetChild(0).GetComponent<Target>() != null){
+					other.transform.GetChild(0).GetComponent<Target>().TakeDamage(40);
+				}
+			}
 		}
 	}
 
 	void TakeDamage(){
 		health--;
+		Debug.Log(health);
 		if(health <= 0){
 			//Finish game
 			ShipMovement.canMove = false;

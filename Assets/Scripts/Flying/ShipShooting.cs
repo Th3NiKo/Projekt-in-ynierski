@@ -35,8 +35,8 @@ public class ShipShooting : MonoBehaviour {
 		kursor = GameObject.FindGameObjectWithTag("Kursor").GetComponent<Kursor3D>();
 		col = GetComponent<Collider>();
 		actualGun = GunType.Bullet;
-		leftGun = GameObject.Find("LeftBlueLight");
-		rightGun = GameObject.Find("RightBlueLight");
+		leftGun = GameObject.Find("LeftMuzzle");
+		rightGun = GameObject.Find("RightMuzzle");
 		crosshair = GameObject.Find("Crosshair");
 		constCrossPos = crosshair.transform.localPosition;
 		col = GetComponent<Collider>();
@@ -109,7 +109,7 @@ public class ShipShooting : MonoBehaviour {
 		center.y += 1.0f;
 		center.z += 4.0f;
 		ExtDebug.DrawBoxCastBox(center,transform.localScale * 3f,transform.rotation, transform.forward * -1, 100f, Color.red);
-		
+		/* 
 		if(m_HitDetect = Physics.BoxCast(col.bounds.center,transform.localScale * 3f, transform.forward * -1, out crossTrigger)){
 			if(crossTrigger.collider.tag == "Meteor"){
 				Vector3 crosshairScreen = Camera.main.WorldToScreenPoint(crosshair.transform.position);
@@ -123,7 +123,7 @@ public class ShipShooting : MonoBehaviour {
 		} else {
 			crosshair.transform.localPosition = Vector3.Lerp(crosshair.transform.localPosition,constCrossPos,1.0f);
 			autoaim = false;
-		}
+		} */
 	}
 
 	void OnDrawGizmos()
