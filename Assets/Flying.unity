@@ -273,7 +273,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400036, guid: 9aa266fb609d4c2469314d2a3807e3cf, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 107139147}
-  m_LocalRotation: {x: -0.024677735, y: 0.70667607, z: 0.024677735, w: -0.70667607}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0.7071068, w: -0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -284,7 +284,7 @@ Transform:
   - {fileID: 1494643666}
   m_Father: {fileID: 168576380}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 270, z: -4}
+  m_LocalEulerAnglesHint: {x: 0, y: -270, z: 180}
 --- !u!95 &107139149
 Animator:
   serializedVersion: 3
@@ -331,7 +331,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: c376f40e163e38446a7e76b7000ef114, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 168576379}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0.99939084, y: -0, z: -0, w: -0.034899402}
   m_LocalPosition: {x: 6, y: 0, z: -1.84}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
@@ -343,7 +343,7 @@ Transform:
   - {fileID: 57067891}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 184, y: 0, z: 0}
 --- !u!114 &168576381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8356,8 +8356,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 799283031}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.522, y: -0.534, z: -4.216}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.52, y: 0.64, z: -4.155}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 411110928}
@@ -12388,7 +12388,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1707119367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.519, y: -0.51, z: -4.193}
+  m_LocalPosition: {x: 0.456, y: 0.64, z: -4.155}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 411110928}
