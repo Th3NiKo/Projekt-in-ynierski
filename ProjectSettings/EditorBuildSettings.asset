@@ -6,5 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/CursorVisualisation.unity
+    guid: caf2dc58994aad14b9a62d54d2ac60dd
+  - enabled: 1
     path: Assets/Flying.unity
     guid: 3a35c5a1d1ee16240bec78e4371047e9
+  - enabled: 1
+    path: Assets/Drawing.unity
+    guid: 97cd6524dc4984448b6fa66dccf9617c
+  - enabled: 1
+    path: Assets/BowlingGame.unity
+    guid: a72448bab2570044483a36cf252fe8fb
+  - enabled: 1
+    path: Assets/Yenga.unity
+    guid: b15c0415c7a2ec344be84a2833c47b4f

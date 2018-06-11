@@ -13,6 +13,7 @@ public class Kursor3D : MonoBehaviour {
 
 	public Material Clicked;
 	public Material NonClicked;
+	public 
 	//public GameObject block;
 	//HingeJoint test;
 	//Rigidbody rgb;
@@ -22,11 +23,17 @@ public class Kursor3D : MonoBehaviour {
 	Collider obj;
 	Vector3 lastPosition;
 	public Vector3 delta;
+	public Vector3 positionsSpeed = new Vector3(1.0f, 1.0f, 1.0f);
+	public Vector3 anglesPosition;
+	public Vector3 anglesDelta;
+	public Vector3 anglesSpeed = new Vector3(1.0f, 1.0f, 1.0f);
 	
 	float t;
 	void Start () {
 		t = 0.1f;
 		position = new Vector3(0.0f, 0.0f, 0.0f);
+		anglesPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		anglesDelta = new Vector3(0.0f, 0.0f, 0.0f);
 		isClicked = false;
 		lastPosition = position;
 		obj = null;
@@ -39,6 +46,7 @@ public class Kursor3D : MonoBehaviour {
 	
 	void Update () {
 		
+		//X Y Z
 		if(Input.GetKey(KeyCode.LeftArrow)){
 			position = Vector3.Lerp(position, position + new Vector3(-0.1f, 0.0f, 0.0f),t);
 		} if(Input.GetKey(KeyCode.RightArrow)){
@@ -55,6 +63,28 @@ public class Kursor3D : MonoBehaviour {
 		} if(Input.GetKey(KeyCode.E)){
 			position = Vector3.Lerp(position, position + new Vector3(0.0f, -0.1f, 0.0f),t);
 		}
+
+
+		//Angles 1 2 3
+		if(Input.GetKey(KeyCode.Alpha1)){
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(-0.1f, 0.0f, 0.0f),t);
+		} if(Input.GetKey(KeyCode.Alpha2)){
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.1f, 0.0f, 0.0f),t);
+		}
+		if(Input.GetKey(KeyCode.Alpha3)){
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, 0.0f, -0.1f),t);
+		} if(Input.GetKey(KeyCode.Alpha4)){
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, 0.0f, 0.1f),t);
+		}
+
+		if(Input.GetKey(KeyCode.Alpha5)){
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, 0.1f, 0.0f),t);
+		} if(Input.GetKey(KeyCode.Alpha6)){
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, -0.1f, 0.0f),t);
+		}
+
+
+
 
 		if(Input.GetKey(KeyCode.LeftShift)){ 
 			isClicked = !isClicked;
@@ -82,7 +112,11 @@ public class Kursor3D : MonoBehaviour {
 	}
 
 	public Vector3 GetPosition(){
-		return position;
+		return new Vector3(position.x * positionsSpeed.x, position.y * positionsSpeed.y,position.z * positionsSpeed.z);
+	}
+
+	public Vector3 GetAngles(){
+		return new Vector3(anglesPosition.x * anglesSpeed.x,anglesPosition.y * anglesSpeed.y,anglesPosition.z * anglesSpeed.z);
 	}
 
 	public bool IsPressed(){
