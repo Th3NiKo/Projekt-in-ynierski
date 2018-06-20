@@ -22,8 +22,8 @@ public class ShipMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(canMove){
-			transform.position += new Vector3(kursor.delta.x, kursor.delta.y, kursor.delta.z) *  -18.0f;
-			transform.position = new Vector3(Mathf.Clamp(transform.position.x,0.0f, 12.0f), Mathf.Clamp(transform.position.y, 0.0f, 10.0f), transform.position.z);
+			transform.position += new Vector3(kursor.delta.x, kursor.delta.y, kursor.delta.z ) *  -18.0f;
+			transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, 0.0f, 15.0f), transform.position.z);
 		
 		float z = 0.0f;
 		float y = 0.0f;

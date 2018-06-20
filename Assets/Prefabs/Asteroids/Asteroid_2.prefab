@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4003670720330382}
   - component: {fileID: 54560159928234192}
   - component: {fileID: 114139620174481480}
+  - component: {fileID: 136475820200346326}
   m_Layer: 0
   m_Name: Asteroid_2
   m_TagString: Meteor
@@ -242,3 +243,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 40
   ps: {fileID: 198221913334570436, guid: 0ff2493a3de88fd42b151671d7e8e3a8, type: 2}
+--- !u!136 &136475820200346326
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1284371926593144}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

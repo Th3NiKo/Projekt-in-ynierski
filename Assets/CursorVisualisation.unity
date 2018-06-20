@@ -198,18 +198,23 @@ Prefab:
     - target: {fileID: 114665878887179416, guid: 9ea26f6c3e09fe54aade03d115e1434a,
         type: 2}
       propertyPath: anglesSpeed.x
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114665878887179416, guid: 9ea26f6c3e09fe54aade03d115e1434a,
         type: 2}
       propertyPath: anglesSpeed.y
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114665878887179416, guid: 9ea26f6c3e09fe54aade03d115e1434a,
         type: 2}
       propertyPath: anglesSpeed.z
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114665878887179416, guid: 9ea26f6c3e09fe54aade03d115e1434a,
+        type: 2}
+      propertyPath: COMobj
+      value: 
+      objectReference: {fileID: 1815679708}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ea26f6c3e09fe54aade03d115e1434a, type: 2}
   m_IsPrefabParent: 0
@@ -291,6 +296,7 @@ GameObject:
   - component: {fileID: 1815679709}
   - component: {fileID: 1815679713}
   - component: {fileID: 1815679714}
+  - component: {fileID: 1815679715}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -355,7 +361,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1815679708}
   m_LocalRotation: {x: 0.27706307, y: 0, z: 0, w: 0.9608518}
-  m_LocalPosition: {x: 0.1, y: 1, z: -1.49}
+  m_LocalPosition: {x: -0.16, y: 2.18, z: -3.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -381,3 +387,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 9ab8fdddc5f28ed459bacd8bacc1e4a7, type: 2}
+--- !u!114 &1815679715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1815679708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266c06724d4501f4ab762f0ee4bf7e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  divide: 1

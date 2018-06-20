@@ -20,7 +20,6 @@ public class ShipStats : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other) {
 		if(other.transform.tag == "Meteor"){
-			
 			TakeDamage();
 			if(other.transform.GetComponent<Target>() != null){
 				
@@ -29,12 +28,15 @@ public class ShipStats : MonoBehaviour {
 					other.transform.GetChild(0).GetComponent<Target>().TakeDamage(40);
 				}
 			}
+		} else if(other.gameObject.tag == "Mesh"){
+			TakeDamage();
+			this.transform.position = new Vector3(6,0,-1.84f);
+
 		}
 	}
 
 	void TakeDamage(){
 		health--;
-		Debug.Log(health);
 		if(health <= 0){
 			//Finish game
 			ShipMovement.canMove = false;

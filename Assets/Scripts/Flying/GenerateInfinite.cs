@@ -43,12 +43,9 @@ public class GenerateInfinite : MonoBehaviour {
             {
                 
                 Vector3 pos = new Vector3((x * planeSize + startPos.x), -5, (z * planeSize + startPos.z));
-                GameObject t;
-                if(Random.Range(0.0f, 1.0f) >= 0.9f){
-                    t = (GameObject)Instantiate(plane, pos, Quaternion.identity);
-                } else {
-                    t = (GameObject)Instantiate(heightPlane, pos, Quaternion.identity);
-                }
+                GameObject t = (GameObject)Instantiate(plane, pos, Quaternion.identity);
+                
+
 
                 string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
                 t.name = tilename;
@@ -78,11 +75,7 @@ public class GenerateInfinite : MonoBehaviour {
 
                  if(!tiles.ContainsKey(tilename)){
                      GameObject t;
-                    if(Random.Range(0.0f, 1.0f) >= 0.9f){
-                        t = (GameObject)Instantiate(plane, pos, Quaternion.identity);
-                    } else {
-                        t = (GameObject)Instantiate(heightPlane, pos, Quaternion.identity);
-                     }
+                     t = (GameObject)Instantiate(plane, pos, Quaternion.identity);
                      t.name = tilename;
                      Tile tile = new Tile(t, updateTime);
                      tiles.Add(tilename, tile);

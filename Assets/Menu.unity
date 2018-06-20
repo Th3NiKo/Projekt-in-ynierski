@@ -817,9 +817,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Clicked: {fileID: 0}
   NonClicked: {fileID: 0}
-  isClicked: 0
+  COMobj: {fileID: 1796395634}
   delta: {x: 0, y: 0, z: 0}
-  positionsSpeed: {x: 5, y: 5, z: 5}
+  positionsSpeed: {x: 0.001, y: 0.001, z: 5}
   anglesPosition: {x: 0, y: 0, z: 0}
   anglesDelta: {x: 0, y: 0, z: 0}
   anglesSpeed: {x: 1, y: 1, z: 1}
@@ -1403,6 +1403,7 @@ GameObject:
   - component: {fileID: 1796395637}
   - component: {fileID: 1796395636}
   - component: {fileID: 1796395635}
+  - component: {fileID: 1796395639}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1473,6 +1474,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 49.02, y: 0, z: 0}
+--- !u!114 &1796395639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796395634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266c06724d4501f4ab762f0ee4bf7e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1816800435
 GameObject:
   m_ObjectHideFlags: 0

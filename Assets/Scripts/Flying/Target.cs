@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Target : MonoBehaviour {
 
-	public float health = 40.0f;
+	public float health = 20.0f;
 	public ParticleSystem ps;
 
 	void Start () {

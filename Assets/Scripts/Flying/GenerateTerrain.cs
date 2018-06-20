@@ -13,8 +13,10 @@ public class GenerateTerrain : MonoBehaviour {
 		for(int v = 0; v < vertices.Length; v++){
 			vertices[v].y = Mathf.PerlinNoise((vertices[v].x + this.transform.position.x) / detailScale, 
 												(vertices[v].z + this.transform.position.z) / detailScale) * heightScale;
+			if(vertices[v].y >= heightScale - 1){
+				vertices[v].y *= ((vertices[v].x + vertices[v].z) % 6) + 3;
+			}
  		}
-
 		 mesh.vertices = vertices;
 		 mesh.RecalculateBounds();
 		 mesh.RecalculateNormals();

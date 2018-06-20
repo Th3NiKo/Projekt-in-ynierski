@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//using Technical.COM;
 /*
 
 Na przyszlosc zrobic z tego statica wzorzec singleton
@@ -13,7 +13,8 @@ public class Kursor3D : MonoBehaviour {
 
 	public Material Clicked;
 	public Material NonClicked;
-	public 
+	    public GameObject COMobj;
+    COM com1;
 	//public GameObject block;
 	//HingeJoint test;
 	//Rigidbody rgb;
@@ -22,7 +23,9 @@ public class Kursor3D : MonoBehaviour {
 	bool isPressed;
 	Collider obj;
 	Vector3 lastPosition;
+	Vector3 lastAngle;
 	public Vector3 delta;
+	public Vector3 deltaAngles;
 	public Vector3 positionsSpeed = new Vector3(1.0f, 1.0f, 1.0f);
 	public Vector3 anglesPosition;
 	public Vector3 anglesDelta;
@@ -34,6 +37,7 @@ public class Kursor3D : MonoBehaviour {
 		position = new Vector3(0.0f, 0.0f, 0.0f);
 		anglesPosition = new Vector3(0.0f, 0.0f, 0.0f);
 		anglesDelta = new Vector3(0.0f, 0.0f, 0.0f);
+		 com1 = COMobj.GetComponent<COM>();
 		isClicked = false;
 		lastPosition = position;
 		obj = null;
@@ -83,7 +87,9 @@ public class Kursor3D : MonoBehaviour {
 			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, -0.1f, 0.0f),t);
 		}
 
-
+		
+		//position = com1.LoadPositions();
+		//anglesPosition = com1.LoadAngles();
 
 
 		if(Input.GetKey(KeyCode.LeftShift)){ 
@@ -106,8 +112,11 @@ public class Kursor3D : MonoBehaviour {
 					temp.anchor = this.transform.position;
 				}
 		}
-		delta = lastPosition - position;
+	//	delta = (lastPosition - position) / 5000;
+	delta = lastPosition - position;
+		//deltaAngles
 		lastPosition = position;
+		lastAngle = anglesPosition;
 
 	}
 
