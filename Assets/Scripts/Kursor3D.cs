@@ -10,10 +10,9 @@ Na przyszlosc zrobic z tego statica wzorzec singleton
 public class Kursor3D : MonoBehaviour {
 
 	Vector3 position;
+	float speed = 5000f;
 
-	public Material Clicked;
-	public Material NonClicked;
-	    public GameObject COMobj;
+	public GameObject COMobj;
     COM com1;
 	//public GameObject block;
 	//HingeJoint test;
@@ -25,7 +24,6 @@ public class Kursor3D : MonoBehaviour {
 	Vector3 lastPosition;
 	Vector3 lastAngle;
 	public Vector3 delta;
-	public Vector3 deltaAngles;
 	public Vector3 positionsSpeed = new Vector3(1.0f, 1.0f, 1.0f);
 	public Vector3 anglesPosition;
 	public Vector3 anglesDelta;
@@ -37,54 +35,63 @@ public class Kursor3D : MonoBehaviour {
 		position = new Vector3(0.0f, 0.0f, 0.0f);
 		anglesPosition = new Vector3(0.0f, 0.0f, 0.0f);
 		anglesDelta = new Vector3(0.0f, 0.0f, 0.0f);
-		 com1 = COMobj.GetComponent<COM>();
+		com1 = COMobj.GetComponent<COM>();
 		isClicked = false;
 		lastPosition = position;
 		obj = null;
 		isPressed = false;
-		//test = block.GetComponent<HingeJoint>();
-		//rgb = GetComponent<Rigidbody>();
-		//test.connectedBody = rgb;
 	}
 	
 	
 	void Update () {
+		//Simulating input
+		/* 
+		float distortion = Random.Range(0,100);
+		float sign = Random.Range(0,2);
+		if(sign == 0){
+			position += new Vector3(distortion, distortion, 0.0f);
+			anglesPosition += new Vector3(distortion, distortion, distortion);
+		} else {
+			position -= new Vector3(distortion, distortion, 0.0f);
+			anglesPosition -= new Vector3(distortion, distortion, distortion);
+		} */
+		//***************************************/
 		
 		//X Y Z
 		if(Input.GetKey(KeyCode.LeftArrow)){
-			position = Vector3.Lerp(position, position + new Vector3(-0.1f, 0.0f, 0.0f),t);
+			position = Vector3.Lerp(position, position + new Vector3(-speed, 0.0f, 0.0f),t);
 		} if(Input.GetKey(KeyCode.RightArrow)){
-			position = Vector3.Lerp(position,position + new Vector3(0.1f, 0.0f, 0.0f),t);
+			position = Vector3.Lerp(position,position + new Vector3(speed, 0.0f, 0.0f),t);
 		}
 		if(Input.GetKey(KeyCode.DownArrow)){
-			position = Vector3.Lerp(position, position + new Vector3(0.0f, 0.0f, -0.1f),t);
+			position = Vector3.Lerp(position, position + new Vector3(0.0f, 0.0f, -speed),t);
 		} if(Input.GetKey(KeyCode.UpArrow)){
-			position = Vector3.Lerp(position, position + new Vector3(0.0f, 0.0f, 0.1f),t);
+			position = Vector3.Lerp(position, position + new Vector3(0.0f, 0.0f, speed),t);
 		}
 
 		if(Input.GetKey(KeyCode.Q)){
-			position = Vector3.Lerp(position, position + new Vector3(0.0f, 0.1f, 0.0f),t);
+			position = Vector3.Lerp(position, position + new Vector3(0.0f, speed, 0.0f),t);
 		} if(Input.GetKey(KeyCode.E)){
-			position = Vector3.Lerp(position, position + new Vector3(0.0f, -0.1f, 0.0f),t);
+			position = Vector3.Lerp(position, position + new Vector3(0.0f, -speed, 0.0f),t);
 		}
 
 
 		//Angles 1 2 3
 		if(Input.GetKey(KeyCode.Alpha1)){
-			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(-0.1f, 0.0f, 0.0f),t);
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(-speed, 0.0f, 0.0f),t);
 		} if(Input.GetKey(KeyCode.Alpha2)){
-			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.1f, 0.0f, 0.0f),t);
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(speed, 0.0f, 0.0f),t);
 		}
 		if(Input.GetKey(KeyCode.Alpha3)){
-			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, 0.0f, -0.1f),t);
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, 0.0f, -speed),t);
 		} if(Input.GetKey(KeyCode.Alpha4)){
-			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, 0.0f, 0.1f),t);
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, 0.0f, speed),t);
 		}
 
 		if(Input.GetKey(KeyCode.Alpha5)){
-			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, 0.1f, 0.0f),t);
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, speed, 0.0f),t);
 		} if(Input.GetKey(KeyCode.Alpha6)){
-			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, -0.1f, 0.0f),t);
+			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, -speed, 0.0f),t);
 		}
 
 		
@@ -108,12 +115,13 @@ public class Kursor3D : MonoBehaviour {
 			if(obj.GetComponent<HingeJoint>() != null){
 					HingeJoint temp = obj.GetComponent<HingeJoint>();
 					temp.connectedBody = GetComponent<Rigidbody>();
-										temp.connectedAnchor = this.transform.position;
+					temp.connectedAnchor = this.transform.position;
 					temp.anchor = this.transform.position;
 				}
 		}
-	//	delta = (lastPosition - position) / 5000;
-	delta = lastPosition - position;
+		//	delta = (lastPosition - position) / 5000;
+		delta = lastPosition - position;
+		anglesDelta = lastAngle - anglesPosition;
 		//deltaAngles
 		lastPosition = position;
 		lastAngle = anglesPosition;
@@ -121,7 +129,7 @@ public class Kursor3D : MonoBehaviour {
 	}
 
 	public Vector3 GetPosition(){
-		return new Vector3(position.x * positionsSpeed.x, position.y * positionsSpeed.y,position.z * positionsSpeed.z);
+		return new Vector3(position.x * positionsSpeed.x, position.y * positionsSpeed.y,anglesPosition.y * anglesSpeed.y);
 	}
 
 	public Vector3 GetAngles(){
@@ -132,30 +140,4 @@ public class Kursor3D : MonoBehaviour {
 		return isPressed;
 	}
 
-	
-	void OnTriggerEnter(Collider other) {
-		
-		if(other.tag == "Block"){
-			if(isPressed){
-				if(other.GetComponent<HingeJoint>() != null){
-					HingeJoint temp = other.GetComponent<HingeJoint>();
-					temp.connectedBody = GetComponent<Rigidbody>();
-					temp.connectedAnchor = this.transform.position;
-					temp.anchor = this.transform.position;
-				}
-				obj = other;
-			}
-			other.GetComponent<MeshRenderer>().material = Clicked;
-		} 
-	}
-
-
-
-	void OnTriggerExit(Collider other) {
-		
-		if(other.tag == "Block"){
-			//obj = null;
-			other.GetComponent<MeshRenderer>().material = NonClicked;
-		} 
-	}
 }

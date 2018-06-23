@@ -11,7 +11,7 @@ public class TerrainChange : MonoBehaviour {
     public float scale = 20f;
  
  
-    void Update () {
+    void Start () {
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = Generate(terrain.terrainData);       
     }
@@ -35,8 +35,8 @@ public class TerrainChange : MonoBehaviour {
     }
  
     float CalculateHeight(float x, float y){
-        float xCoord = (float)x / width * scale;
-        float yCoord = (float)y / height * scale;
+        float xCoord = (float)(x + this.transform.position.x) / width * scale;
+        float yCoord = (float)(y + this.transform.position.z) / height * scale;
         float perlin = Mathf.PerlinNoise(xCoord, yCoord);
         return perlin;
     }

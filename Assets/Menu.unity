@@ -815,14 +815,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1cde0edc0b5f747883715def044bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clicked: {fileID: 0}
-  NonClicked: {fileID: 0}
   COMobj: {fileID: 1796395634}
   delta: {x: 0, y: 0, z: 0}
-  positionsSpeed: {x: 0.001, y: 0.001, z: 5}
+  positionsSpeed: {x: 0.0001, y: 0.0001, z: 5}
   anglesPosition: {x: 0, y: 0, z: 0}
   anglesDelta: {x: 0, y: 0, z: 0}
-  anglesSpeed: {x: 1, y: 1, z: 1}
+  anglesSpeed: {x: 1, y: 0.0001, z: 1}
 --- !u!114 &1286081818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1485,6 +1483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266c06724d4501f4ab762f0ee4bf7e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  divide: 8000
 --- !u!1 &1816800435
 GameObject:
   m_ObjectHideFlags: 0

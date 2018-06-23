@@ -20,7 +20,7 @@ public class MotionEffect : MonoBehaviour {
 	
 	void Update () {
 		ChromaticAberrationModel.Settings s = post.chromaticAberration.settings;
-		if(kursor.delta.z != 0){
+		if(kursor.anglesDelta.y != 0){
 			s.intensity += 0.05f;
 			s.intensity = Mathf.Clamp(s.intensity,0.0f,1.0f);
 			post.chromaticAberration.settings = s;

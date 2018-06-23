@@ -58,4 +58,8 @@ public class ShipStats : MonoBehaviour {
 	public static int GetPoints(){
 		return points;
 	}
+
+	public static void ResetPoints(){
+		points = 0;
+	}
 }

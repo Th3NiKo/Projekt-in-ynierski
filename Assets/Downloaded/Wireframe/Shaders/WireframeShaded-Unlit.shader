@@ -117,8 +117,12 @@ Shader "SuperSystems/Wireframe-Shaded-Unlit"
 
 			fixed4 frag (g2f i) : SV_Target
 			{
+				float speedDown = 5;
 				float minDistanceToEdge = min(i.dist[0], min(i.dist[1], i.dist[2])) * i.dist[3];
-
+				float r = clamp(-sin(_Time[1] / speedDown), 0.25f, 0.5f);
+				float g = clamp(cos(_Time[1] / speedDown), 0.20f, 0.30f);
+				float b = clamp(sin(_Time[1] / speedDown), 0.25f, 0.5f);
+				_BaseColor = fixed4(r, g, b,0);
 				float4 baseColor = _BaseColor * tex2D(_MainTex, i.uv0);
 
 				// Early out if we know we are not on a line segment.
@@ -129,6 +133,8 @@ Shader "SuperSystems/Wireframe-Shaded-Unlit"
 
 				// Smooth our line out
 				float t = exp2(_WireSmoothness * -1.0 * minDistanceToEdge * minDistanceToEdge);
+				float test = clamp(cos(_Time[1] / speedDown), 0.0f, 1.0f);
+				_WireColor = fixed4(test, test,test,1);
 				fixed4 finalColor = lerp(baseColor, _WireColor, t);
 				finalColor.a = t;
 

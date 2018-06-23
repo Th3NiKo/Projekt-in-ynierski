@@ -41,9 +41,6 @@ public class COM : MonoBehaviour {
     
 
 	  void FixedUpdate(){
-        if(counter % 2 == 0)
-        //port2.WriteLine(counter.ToString());
-        counter++;
         if(port.IsOpen){  
           try{
             

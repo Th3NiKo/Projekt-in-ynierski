@@ -1224,12 +1224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1cde0edc0b5f747883715def044bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clicked: {fileID: 0}
-  NonClicked: {fileID: 0}
   COMobj: {fileID: 1995967764}
   delta: {x: 0, y: 0, z: 0}
-  deltaAngles: {x: 0, y: 0, z: 0}
-  positionsSpeed: {x: 1, y: 1, z: 1}
+  positionsSpeed: {x: 0.00003, y: 0.00003, z: 0.00003}
   anglesPosition: {x: 0, y: 0, z: 0}
   anglesDelta: {x: 0, y: 0, z: 0}
   anglesSpeed: {x: 1, y: 1, z: 1}
