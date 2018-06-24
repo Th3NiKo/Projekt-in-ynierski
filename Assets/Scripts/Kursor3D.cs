@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //using Technical.COM;
 /*
 
@@ -44,6 +45,12 @@ public class Kursor3D : MonoBehaviour {
 	
 	
 	void Update () {
+		//Going to menu
+		if(Input.GetKey(KeyCode.Escape)){
+			SceneManager.LoadScene(5);
+		}
+
+
 		//Simulating input
 		/* 
 		float distortion = Random.Range(0,100);
@@ -88,9 +95,9 @@ public class Kursor3D : MonoBehaviour {
 			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, 0.0f, speed),t);
 		}
 
-		if(Input.GetKey(KeyCode.Alpha5)){
+		if(Input.GetKey(KeyCode.Alpha5) || Input.GetKey(KeyCode.UpArrow)){
 			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, speed, 0.0f),t);
-		} if(Input.GetKey(KeyCode.Alpha6)){
+		} if(Input.GetKey(KeyCode.Alpha6) || Input.GetKey(KeyCode.DownArrow)){
 			anglesPosition = Vector3.Lerp(anglesPosition, anglesPosition + new Vector3(0.0f, -speed, 0.0f),t);
 		}
 

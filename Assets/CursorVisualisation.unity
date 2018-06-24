@@ -198,17 +198,17 @@ Prefab:
     - target: {fileID: 114665878887179416, guid: 9ea26f6c3e09fe54aade03d115e1434a,
         type: 2}
       propertyPath: anglesSpeed.x
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 114665878887179416, guid: 9ea26f6c3e09fe54aade03d115e1434a,
         type: 2}
       propertyPath: anglesSpeed.y
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 114665878887179416, guid: 9ea26f6c3e09fe54aade03d115e1434a,
         type: 2}
       propertyPath: anglesSpeed.z
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 114665878887179416, guid: 9ea26f6c3e09fe54aade03d115e1434a,
         type: 2}
