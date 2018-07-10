@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 Na przyszlosc zrobic z tego statica wzorzec singleton
 
  */
-public class Kursor3D : MonoBehaviour {
+public class Kursor3D1 : MonoBehaviour {
 
 	Vector3 position;
 	float speed = 5000f;
@@ -102,8 +102,8 @@ public class Kursor3D : MonoBehaviour {
 		}
 
 		
-		position = com1.LoadPositions();
-		anglesPosition = com1.LoadAngles();
+		//position = com1.LoadPositions();
+		//anglesPosition = com1.LoadAngles();
 
 
 		if(Input.GetKey(KeyCode.LeftShift)){ 

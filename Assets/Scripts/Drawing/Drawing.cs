@@ -11,7 +11,7 @@ public class Drawing : MonoBehaviour {
 	Vector3 size;
 	Vector3 ballSize;
 	public Material material;
-	public float smooth = 0.03f;
+	public float smooth = 0.1f;
 	public float thickness = 0.15f;
 	GameObject kursorHelper;
 	bool pressed;
@@ -58,8 +58,10 @@ public class Drawing : MonoBehaviour {
 				//Cylinder rotation
 				
 				Vector3 rotateBy = lastPosition - this.transform.position;
-				cylinder.transform.rotation = Quaternion.LookRotation(rotateBy);
-				cylinder.transform.Rotate(90,0,0);
+				if(rotateBy != Vector3.zero){
+					cylinder.transform.rotation = Quaternion.LookRotation(rotateBy);
+					cylinder.transform.Rotate(90,0,0);
+				}
 				lastPosition = this.transform.position;
 				
 				
@@ -75,9 +77,13 @@ public class Drawing : MonoBehaviour {
 			kursorHelper.GetComponent<MeshRenderer>().material = material;
 			
 			Vector3 rotateBy = lastPosition - this.transform.position;
-			kursorHelper.transform.rotation = Quaternion.LookRotation(rotateBy);
+			if(rotateBy != Vector3.zero){
+				Quaternion temporary = Quaternion.LookRotation(rotateBy);
+				temporary = Quaternion.Euler(temporary.eulerAngles.x + 90, temporary.eulerAngles.y, temporary.eulerAngles.z);
+				kursorHelper.transform.rotation = temporary;
+			}
 			
-			kursorHelper.transform.Rotate(90,0,0);
+			
 			kursorHelper.transform.position = this.transform.position;
 			kursorHelper.transform.localScale = size;
 			lastPosition = this.transform.position;

@@ -24,33 +24,30 @@ public class COM : MonoBehaviour {
 
     void Start(){
       port = new SerialPort( "\\\\.\\COM5", 9600, Parity.None, 8, StopBits.One);
-      //port2 = new SerialPort( "\\\\.\\COM2", 9600, Parity.None, 8, StopBits.One);
      
       port.RtsEnable = true;
 
       if(!port.IsOpen){
         port.Open();
-        //port2.Open();
       }
      
-     port.ReadTimeout = 25;
-     //port2.ReadTimeout = 25;
-
+     port.ReadTimeout = 50;
+     result = new string[] {"0","0","0","0","0"};
     
     }
     
 
 	  void FixedUpdate(){
-        if(port.IsOpen){  
+        if(port.IsOpen){
+          
           try{
-            
+ 
             //string message = port.ReadLine();
             if(port.BytesToRead != 0){
               byte[] data = new byte[1024];
               int bytesRead = port.Read(data, 0, data.Length);
               string message = Encoding.ASCII.GetString(data, 0, bytesRead);
               if(message.Length > 0){
-                Debug.Log(message);
                 result = message.Split(stringSeparators,StringSplitOptions.None);
               }
             }

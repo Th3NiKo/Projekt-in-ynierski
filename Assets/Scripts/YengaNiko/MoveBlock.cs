@@ -4,33 +4,32 @@ using UnityEngine;
 
 public class MoveBlock : MonoBehaviour {
 
-	private Vector3 screenPoint;
-	private Vector3 offset;
-
-	private Rigidbody rgb;
-	private Kursor3D kursor3d;
-	// Use this for initialization
+	GameObject actualBlock;
 	void Start () {
-		rgb = GetComponent<Rigidbody>();
-		kursor3d = GameObject.Find("Kursor").GetComponent<Kursor3D>();
 
 		
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-		//transform.position = Vector3.MoveTowards(rgb.position, kursor3d.GetComponent<Rigidbody>().position, 0.1f);
+	void Update(){
+
+		if(actualBlock != null){
+			if(Input.GetKeyDown(KeyCode.LeftShift)){
+				actualBlock.AddComponent(typeof(FixedJoint));
+				actualBlock.GetComponent<FixedJoint>().connectedBody = this.GetComponent<Rigidbody>();
+				actualBlock.GetComponent<FixedJoint>().massScale = 1f;
+				actualBlock.GetComponent<FixedJoint>().connectedMassScale = 1f;
+			}
+			if(Input.GetKeyUp(KeyCode.LeftShift)){
+				Destroy(actualBlock.GetComponent<FixedJoint>());
+				//actualBlock.GetComponent<FixedJoint>().connectedBody = null;
+			}
+		}
 	}
 
-	void OnMouseDown(){
-		screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-	}
-		
-	void OnMouseDrag(){
-		Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-		Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
-		//rgb.velocity = Vector3.MoveTowards(rgb.position, cursorPosition, 0.1f);
-		transform.position = cursorPosition;
+	private void OnTriggerStay(Collider other) {
+		if(other.tag == "Block"){
+			actualBlock = other.gameObject;
+		}
 	}
 }
