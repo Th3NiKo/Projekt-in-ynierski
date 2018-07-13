@@ -15,7 +15,7 @@ public class ColorOnTriiger : MonoBehaviour {
 		rend = GetComponent<Renderer>();
 
 		NormalColor = rend.material.color;
-		OnTriggerColor = Color.green;
+		OnTriggerColor = Color.black;
 
 		isSelected = false;
 	}

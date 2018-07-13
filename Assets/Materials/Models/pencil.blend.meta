@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 35dcbc5057e07f945af3713721942e8c
-timeCreated: 1526738352
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -14,7 +12,17 @@ ModelImporter:
     4300000: Cylinder
     7400000: Default Take
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_001
+    second: {fileID: 2100000, guid: fe25178c7372534489b694cc6d7e5d4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_002
+    second: {fileID: 2100000, guid: 191d38f34d1a1ae41811f3fef8d13720, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -33,6 +41,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5

@@ -6,7 +6,7 @@ public class CameraMode : MonoBehaviour {
 
 	// Use this for initialization
 
-	public Camera camera;
+	new public Camera camera;
 	public bool zooming = true;
     public float zoomSpeed;
  private bool _inputLocked;

@@ -123,15 +123,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4238738504113152, guid: 6b539c16d08460f4ba6de0c194f6a100, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.604
+      value: -0.742
       objectReference: {fileID: 0}
     - target: {fileID: 4238738504113152, guid: 6b539c16d08460f4ba6de0c194f6a100, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.59
+      value: 2.362
       objectReference: {fileID: 0}
     - target: {fileID: 4238738504113152, guid: 6b539c16d08460f4ba6de0c194f6a100, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.66
       objectReference: {fileID: 0}
     - target: {fileID: 4238738504113152, guid: 6b539c16d08460f4ba6de0c194f6a100, type: 2}
       propertyPath: m_LocalRotation.x
@@ -323,7 +323,7 @@ TrailRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 19a1e36bbcb5b4c429a5dfdc8fb914de, type: 2}
+  - {fileID: 2100000, guid: fde19fefc3c0e5745969c12196084938, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -403,7 +403,7 @@ TrailRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 2
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0

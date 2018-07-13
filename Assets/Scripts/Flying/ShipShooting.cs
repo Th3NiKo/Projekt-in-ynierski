@@ -9,7 +9,6 @@ public class ShipShooting : MonoBehaviour {
 	private enum GunType { Bullet };
 	public GameObject bulletObject;
     GameObject crosshair;
-	Vector3 constCrossPos;
 	Kursor3D kursor; 
 	Collider col;
 
@@ -38,7 +37,7 @@ public class ShipShooting : MonoBehaviour {
 		leftGun = GameObject.Find("LeftMuzzle");
 		rightGun = GameObject.Find("RightMuzzle");
 		crosshair = GameObject.Find("Crosshair");
-		constCrossPos = crosshair.transform.localPosition;
+		//constCrossPos = crosshair.transform.localPosition;
 		col = GetComponent<Collider>();
 		cooldownTimer = 0.0f;
 		cooldown = 0.3f;

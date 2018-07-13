@@ -7,7 +7,6 @@ public class Drawing : MonoBehaviour {
 	Kursor3D kursor;
 	//TrailRenderer trail;
 	public GameObject line;
-	bool toDraw = false;
 	Vector3 size;
 	Vector3 ballSize;
 	public Material material;
@@ -41,11 +40,14 @@ public class Drawing : MonoBehaviour {
 				
 				//Draw
 				GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+				cylinder.tag = "Mesh";
 				//Spheres on finish and start
 				GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+				sphere.tag = "Mesh";
 				sphere.transform.position = lastPosition;
 				sphere.transform.localScale = ballSize;
 				sphere.GetComponent<MeshRenderer>().material = material;
+				
 
 				
 
@@ -72,6 +74,7 @@ public class Drawing : MonoBehaviour {
 				sphere.transform.position = lastPosition;
 				sphere.transform.localScale = ballSize;
 				sphere.GetComponent<MeshRenderer>().material = material;
+				sphere.tag = "Mesh";
 			}
 		
 			kursorHelper.GetComponent<MeshRenderer>().material = material;

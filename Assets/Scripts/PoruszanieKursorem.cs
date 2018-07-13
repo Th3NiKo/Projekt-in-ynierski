@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PoruszanieKursorem : MonoBehaviour {
 
-	[SerializeField] Vector2 position;
-	[SerializeField] Vector3 angles;
+	public Vector2 position;
+	public Vector3 angles;
 	[Range(0,50000)] public float sensitivity = 10000;
 	COM msg;
 	public static bool canMove = true;
@@ -19,9 +19,9 @@ public class PoruszanieKursorem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		position = msg.LoadPositions ();
+		angles = msg.LoadAngles ();
 		if(canMove){
-			position = msg.LoadPositions ();
-			angles = msg.LoadAngles ();
 			rgb.velocity = new Vector3 (position.x / sensitivity, position.y / sensitivity, -angles.z / sensitivity);
 		} else {
 			rgb.velocity = Vector3.zero;

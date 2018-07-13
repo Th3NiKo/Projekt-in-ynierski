@@ -7,13 +7,11 @@ public class MotionEffect : MonoBehaviour {
 	
 
 	PostProcessingProfile post;
-	Vector3 lastPosition;
 	Kursor3D kursor;
-	float intensity = 0;
+	//float intensity = 0;
 
 	void Start () {
 		kursor = GameObject.FindGameObjectWithTag("Kursor").GetComponent<Kursor3D>();
-		lastPosition = this.transform.position;
 		post = GetComponent<PostProcessingBehaviour>().profile;
 	}
 	

@@ -21,7 +21,8 @@ public class MaterialChange : MonoBehaviour {
 	{
 		if(other.tag == "Kursor"){
 			if(kursor.IsPressed()){
-				other.transform.GetChild(0).GetComponent<Drawing>().material = thisMaterial;
+				GameObject.Find("Tube").GetComponent<DrawTest>().mat = thisMaterial;
+				GameObject.Find("Tube").GetComponent<MeshRenderer>().material= thisMaterial;
 			}
 		} 
 
@@ -32,11 +33,13 @@ public class MaterialChange : MonoBehaviour {
 	{
 		if(other.tag == "Kursor"){
 			if(kursor.IsPressed()){
-				other.transform.GetChild(0).GetComponent<Drawing>().material = thisMaterial;
+			
+				GameObject.Find("Tube").GetComponent<DrawTest>().mat = thisMaterial;
+				GameObject.Find("Tube").GetComponent<MeshRenderer>().material= thisMaterial;
 			}
 		}
 
-		if(other.gameObject.name == "Sphere" || other.gameObject.name == "Cylinder"){
+		if(other.gameObject.name == "Mesh"){
 			Destroy(other.gameObject);
 		}
 	}

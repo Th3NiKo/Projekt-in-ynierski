@@ -32,7 +32,7 @@ public class ShipMovement : MonoBehaviour {
 			angles = msg.LoadAngles ();
 			rgb.velocity = new Vector3 (position.x / sensitivity, position.y / sensitivity, -angles.z / sensitivity);
 			float _x = rgb.velocity.x;
-			float _y = rgb.velocity.y;
+			//float _y = rgb.velocity.y;
 			float _z = rgb.velocity.z;
 			//Check how to rotate ship.
 			float z = 0.0f;

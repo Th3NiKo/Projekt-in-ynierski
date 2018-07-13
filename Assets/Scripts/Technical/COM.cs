@@ -12,9 +12,6 @@ public class COM : MonoBehaviour {
     SerialPort port;
     public float divide = 8000.0f;
 
-    SerialPort port2;
-    int counter = 0;
-
 
     //String change
     string[] stringSeparators = new string[] {"\n"};

@@ -6,27 +6,22 @@ public class RotateCamera : MonoBehaviour {
 
 	COM msg;
 	[SerializeField] Vector3 angles;
-	private Vector3 lastAngles;
+	GameObject tower;
 	void Start () {
 		msg = Camera.main.GetComponent<COM>();
 		angles = msg.LoadAngles ();
-		lastAngles = angles;
+		tower = GameObject.Find("Column");
 	}
 	
 	
 	void Update () {
-		angles = msg.LoadAngles ();
-		if(Mathf.Abs(lastAngles.x - angles.x) >= 75f){
-			if(lastAngles.x - angles.x > 0){
-				Camera.main.transform.RotateAround(new Vector3(0,0,0), new Vector3(0,1,0), 5);
-			} else {
-				Camera.main.transform.RotateAround(new Vector3(0,0,0), new Vector3(0,1,0), -5);
-			}
+		if(Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.LeftShift)){
+			angles = msg.LoadAngles ();
+				if(angles.y > 0){
+					tower.transform.Rotate(new Vector3(tower.transform.rotation.eulerAngles.x, 100f * Time.deltaTime, 0.0f));
+				} else {
+					tower.transform.Rotate(new Vector3(tower.transform.rotation.eulerAngles.x, -100f * Time.deltaTime, 0.0f));
+				}
 		}
-
-
-
-
-		lastAngles = angles;
 	}
 }

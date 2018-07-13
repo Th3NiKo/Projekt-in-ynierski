@@ -6,7 +6,6 @@ public class TerrainLowPoly : MonoBehaviour {
 
  void Start ()
     {
-        int terrainSize = 10;
  
         Vector3[] vertices = this.transform.GetComponent<MeshFilter>().mesh.vertices;
  

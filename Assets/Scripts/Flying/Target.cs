@@ -24,7 +24,7 @@ public class Target : MonoBehaviour {
 	}
 
 	void Die(){
-		ParticleSystem temp = Instantiate(ps, this.transform.position,Quaternion.identity);
+		 Instantiate(ps, this.transform.position,Quaternion.identity);
 		Destroy(transform.parent.gameObject);
 	}
 }

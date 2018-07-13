@@ -9,8 +9,8 @@ public class CameraLookAt : MonoBehaviour {
 	public float smoothSpeed = 0.0f;
 
 	void LateUpdate(){
-		Vector3 desiredPosition = target.position + offset;
-		Vector3 smoothedPosition = Vector3.Lerp(transform.position,desiredPosition, smoothSpeed);
+//		Vector3 desiredPosition = target.position + offset;
+	//	Vector3 smoothedPosition = Vector3.Lerp(transform.position,desiredPosition, smoothSpeed);
 		transform.position = target.position + offset;
 
 		transform.LookAt(target);

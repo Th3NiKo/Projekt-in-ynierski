@@ -7,21 +7,24 @@ public class SizeSlider : MonoBehaviour {
 
 	Slider slider;
 	Kursor3D kursor;
-	Drawing draw;
+	DrawTest draw;
+	PoruszanieKursorem movement;
 	void Start () {
 		slider = GetComponent<Slider>();
 		kursor = GameObject.FindGameObjectWithTag("Kursor").GetComponent<Kursor3D>();
-		draw = GameObject.FindGameObjectWithTag("Kursor").transform.GetChild(0).GetComponent<Drawing>();
-		slider.value = draw.thickness;
+		movement = GameObject.FindGameObjectWithTag("Kursor").GetComponent<PoruszanieKursorem>();
+		draw = GameObject.Find("Tube").GetComponent<DrawTest>();
+
+		slider.value = draw.actualRadius;
 		PoruszanieKursorem.BlockMovement();
 	}
 	
 	
 	void Update () {
-		if(kursor.delta.x < 0){
+		if(movement.position.x < 0){
 			slider.value += 0.01f;
 			draw.changeThickness(slider.value);
-		} else if(kursor.delta.x > 0){
+		} else if(movement.position.x > 0){
 			slider.value -= 0.01f;
 			draw.changeThickness(slider.value);
 		}
