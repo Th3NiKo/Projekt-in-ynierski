@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		Target tar = other.GetComponent<Target>();
 		if(tar != null){
-			tar.TakeDamage(10f);
+			tar.TakeDamage(40f);
 			if(tar.tag == "Meteor"){
 				//Shrink it out
 				//other.transform.localScale = new Vector3(other.transform.localScale.x-0.05f ,other.transform.localScale.y-0.05f ,other.transform.localScale.z-0.05f );

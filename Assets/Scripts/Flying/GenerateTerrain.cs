@@ -20,7 +20,7 @@ public class GenerateTerrain : MonoBehaviour {
 		 mesh.vertices = vertices;
 		 mesh.RecalculateBounds();
 		 mesh.RecalculateNormals();
-		 this.gameObject.AddComponent<MeshCollider>();
+		// this.gameObject.AddComponent<MeshCollider>();
 	}
 	
 	// Update is called once per frame

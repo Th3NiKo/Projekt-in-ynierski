@@ -10,21 +10,33 @@ public class CursorOnBox : MonoBehaviour {
 	public float MaxRangeInput = 10000;
 	public float MaxRangeOutput = 4;
 
+	public bool OnDeltas = false;
+
 	private float Divide;
 	public
-	PenCOM msg;
+	COM msg;
 	void Start () {
 		Divide = MaxRangeInput / MaxRangeOutput;
-		msg = Camera.main.GetComponent<PenCOM>();
+		
+		msg = Camera.main.GetComponent<COM>();
 	}
 	
 	
 	void Update () {
-		position = msg.LoadPositions ();
-		deltas = msg.LoadDeltas ();
-
-		Vector3 newPos = new Vector3(position.x / Divide, position.y / Divide, -position.z / Divide);
-		this.transform.position = newPos;
+		if(!OnDeltas){
+			position = msg.LoadPositions ();
+			Vector3 newPos = new Vector3(position.x / Divide, position.y / Divide, -position.z / Divide);
+			this.transform.position = newPos;
+		} else {
+			Divide = 1000;
+			position = msg.LoadPositions();
+			deltas = msg.LoadDeltas();
+			Vector3 newPos = new Vector3(transform.position.x + (deltas.x / Divide), transform.position.y + (deltas.y / Divide), transform.position.z -(deltas.z / Divide));
+			newPos = new Vector3(Mathf.Clamp(newPos.x, -MaxRangeOutput, MaxRangeOutput),
+								 Mathf.Clamp(newPos.y, -MaxRangeOutput, MaxRangeOutput),
+								 Mathf.Clamp(newPos.z, -MaxRangeOutput, MaxRangeOutput));
+			this.transform.position = newPos;
+		}
 		
 	}
 }

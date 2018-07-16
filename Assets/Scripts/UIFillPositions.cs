@@ -12,7 +12,7 @@ public class UIFillPositions : MonoBehaviour {
 	Text a3;
 	Image plugged;
 	
-	PenCOM msg;
+	COM msg;
 
 	void Start () {
 		x = transform.GetChild (1).GetComponent<Text>();
@@ -21,17 +21,29 @@ public class UIFillPositions : MonoBehaviour {
 		a2 = transform.GetChild (4).GetComponent<Text>();
 		a3 = transform.GetChild (5).GetComponent<Text>();
 
-		msg = Camera.main.GetComponent<PenCOM>();
+
+
+		msg = Camera.main.GetComponent<COM>();
+
 	}
 	
 
 	void FixedUpdate () {
-		
-			x.text = "X: " + msg.LoadPositions ().x.ToString ();
-			y.text = "Y: " + msg.LoadPositions ().y.ToString ();
-			a1.text = "A1: " + msg.LoadPositions().z.ToString ();
-			//a2.text = "A2: " + msg.LoadAngles ().y.ToString ();
-			//a3.text = "A3: " + msg.LoadAngles ().z.ToString ();
+
+			if(msg.GetActualDevice() == COM.Device.Pen){
+				x.text = "X: " + msg.LoadPositions ().x.ToString ();
+				y.text = "Y: " + msg.LoadPositions ().y.ToString ();
+				a1.text = "Z: " + msg.LoadPositions().z.ToString ();
+				a2.text = "DeltaX:: " + msg.LoadDeltas ().x.ToString ();
+				a3.text = "DeltaY:: " + msg.LoadDeltas ().y.ToString ();
+			} else {
+				x.text = "X: " + msg.LoadPositions ().x.ToString ();
+				y.text = "Y: " + msg.LoadPositions ().y.ToString ();
+				a1.text = "A1: " + msg.LoadAngles().x.ToString ();
+				a2.text = "A2: " + msg.LoadAngles ().y.ToString ();
+				a3.text = "A3: " + msg.LoadAngles ().z.ToString ();
+			}
+			
 	}
 
 }

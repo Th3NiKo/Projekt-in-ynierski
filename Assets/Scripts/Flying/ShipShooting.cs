@@ -49,8 +49,8 @@ public class ShipShooting : MonoBehaviour {
 	void Update () {
 		
 		if(cooldown < cooldownTimer){
-			if(kursor.IsPressed()){
-				if(ShipMovement.canMove){
+			if(Input.GetKey(KeyCode.Z)){
+				if(true){
 					Shoot();
 					cooldownTimer = 0.0f;
 				}
@@ -83,7 +83,10 @@ public class ShipShooting : MonoBehaviour {
 			bullet2.GetComponent<Bullet>().ShootForward(false);
 		} else {
 			bullet1.GetComponent<Bullet>().ShootForward(true);
+			
 			bullet2.GetComponent<Bullet>().ShootForward(true);
+			bullet1.transform.rotation = Quaternion.Euler(184,this.transform.rotation.eulerAngles.y,0);
+			bullet2.transform.rotation = Quaternion.Euler(184,this.transform.rotation.eulerAngles.y,0);
 		}
 		Destroy(bullet1,2f);
 		Destroy(bullet2,2f);

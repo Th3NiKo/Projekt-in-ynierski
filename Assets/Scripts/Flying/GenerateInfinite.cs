@@ -23,7 +23,7 @@ public class GenerateInfinite : MonoBehaviour {
     public GameObject player;
 
     int planeSize = 10;
-    int halfTilesX = 5;
+    int halfTilesX = 7;
     int halfTilesZ = 7;
 
     Vector3 startPos;
@@ -42,7 +42,7 @@ public class GenerateInfinite : MonoBehaviour {
             for (int z = -halfTilesZ / 5; z < halfTilesZ; z++)
             {
                 
-                Vector3 pos = new Vector3((x * planeSize + startPos.x), -15, (z * planeSize + startPos.z));
+                Vector3 pos = new Vector3((x * planeSize + startPos.x), -25, (z * planeSize + startPos.z));
                 GameObject t = (GameObject)Instantiate(plane, pos, Quaternion.identity);
                 
 
@@ -70,7 +70,7 @@ public class GenerateInfinite : MonoBehaviour {
 
          for(int x = -halfTilesX;x < halfTilesX; x++){
              for(int z = -halfTilesZ / 5; z <halfTilesZ; z++){
-                 Vector3 pos = new Vector3((x * planeSize + playerX),-15,(z * planeSize + playerZ));
+                 Vector3 pos = new Vector3((x * planeSize + playerX),-25,(z * planeSize + playerZ));
                  string tilename = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
 
                  if(!tiles.ContainsKey(tilename)){
