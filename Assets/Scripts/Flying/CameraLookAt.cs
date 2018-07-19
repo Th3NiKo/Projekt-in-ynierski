@@ -3,16 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraLookAt : MonoBehaviour {
+
+	private bool follow = true;
+	private bool temporary = false;
 	public Transform target;
 	public Vector3 offset;
 
-	public float smoothSpeed = 0.0f;
+	bool beforeClick = false;
 
+
+	void Update(){
+		if(Input.GetKeyDown(KeyCode.C)){
+			follow = !follow;
+		}
+		
+	
+		if(Input.GetKey(KeyCode.X) && !Input.GetKey(KeyCode.Z)){
+			temporary = true;
+		}
+		if(Input.GetKeyUp(KeyCode.X)){
+			temporary = false;
+		}
+	}
 	void LateUpdate(){
-//		Vector3 desiredPosition = target.position + offset;
-	//	Vector3 smoothedPosition = Vector3.Lerp(transform.position,desiredPosition, smoothSpeed);
-		transform.position = target.position + offset;
-
-		transform.LookAt(target);
+		if(follow && !temporary){
+			transform.position = target.position + offset;
+			transform.LookAt(target);
+		}
 	}
 }

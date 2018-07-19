@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using SpaceNavigatorDriver;
 public class DrawTest : MonoBehaviour {
 
 	public GameObject kursor;
+	COM msg;
 	TubeRenderer tube;
 	List <Vector3> points;
 	Vector3 lastPosition;
+	Vector3 delta;
 
 	public Material [] allMats;
 	int actualMaterial = 0;
@@ -15,13 +17,29 @@ public class DrawTest : MonoBehaviour {
 
 	public float actualRadius = 0.1f;
 	
+	public GameObject cameraUp;
 	void Start () {
 		tube = GetComponent<TubeRenderer>();
 		points = new List<Vector3>();
 		lastPosition = kursor.transform.position;
+		msg = Camera.main.GetComponent<COM>();
+		cameraUp.SetActive(false);
 	}
 	
 	void Update () {
+
+		//Delta for rotating
+		delta = msg.LoadDeltas();
+		
+		//Top view camera showing
+		if(Input.GetKey(KeyCode.V)){
+			cameraUp.SetActive(true);
+		} else {
+			cameraUp.SetActive(false);
+		}
+
+		
+
 		//Destroying
 		if(Input.GetKey(KeyCode.X) && Input.GetKey(KeyCode.Z)){
 			GameObject [] allItems = GameObject.FindGameObjectsWithTag("Mesh");
@@ -36,10 +54,11 @@ public class DrawTest : MonoBehaviour {
 		if(Input.GetKey(KeyCode.X) && !Input.GetKey(KeyCode.Z)){
 			GameObject [] allMeshes = GameObject.FindGameObjectsWithTag("Mesh");
 			for(int i = 0; i < allMeshes.Length; i++){
-				allMeshes[i].transform.RotateAround(new Vector3(1,0,0),new Vector3(0,3,0),1);
+				allMeshes[i].transform.RotateAround(new Vector3(0,0,0), new Vector3(0,3,0), delta.x / 5);
 			}
 		}
 
+		//Drawing
 		if(Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.X)){
 			this.gameObject.GetComponent<Renderer>().enabled = true;
 				if(Vector3.Distance(lastPosition, kursor.transform.position) >= (0.01f)){
@@ -53,6 +72,7 @@ public class DrawTest : MonoBehaviour {
 			tube.vertices = null;
 		}
 
+		//Drawing
 		if(Input.GetKeyUp(KeyCode.Z)){
 			GameObject line = new GameObject();
 			line.AddComponent(typeof(MeshFilter));

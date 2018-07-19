@@ -4,13 +4,13 @@ using System.IO.Ports;
 using UnityEngine;
 using System.Threading;
 using System.Globalization;
+using System.Collections.Generic;
 
 public class COM : MonoBehaviour {
   
 
     public enum Device {Ufo, Pen}
     SerialPort port;
-    public float divide = 1 ;
 
 
     //String change
@@ -19,13 +19,18 @@ public class COM : MonoBehaviour {
     Device actualDevice = Device.Ufo;
     int lastLength = 0;
 
+    private Vector3 lastPosition;
+
+    
+  
 
     void Start(){
-      port = new SerialPort( "\\\\.\\COM5", 9600, Parity.None, 8, StopBits.One);
+      lastPosition = new Vector3(0,0,0);
+      port = new SerialPort("COM5", 9600, Parity.None, 8, StopBits.One);
+      
+      port.Close();
       lastLength = SerialPort.GetPortNames().Length;
-      for(int i = 0; i < SerialPort.GetPortNames().Length; i++){
-        
-      }
+
      
       port.RtsEnable = true;
 
@@ -40,15 +45,18 @@ public class COM : MonoBehaviour {
     
 
 	  void FixedUpdate(){
-        if(SerialPort.GetPortNames().Length != lastLength){
-          port = new SerialPort( "\\\\.\\COM5", 9600, Parity.None, 8, StopBits.One);
+      
+        if(!port.IsOpen){
+          port = new SerialPort( "COM5", 9600, Parity.None, 8, StopBits.One);
+          
+
            if(!port.IsOpen){
             port.Open();
            }
         }
 
         if(port.IsOpen){
-          
+
           try{
  
             //string message = port.ReadLine();
@@ -56,6 +64,7 @@ public class COM : MonoBehaviour {
               byte[] data = new byte[1024];
               int bytesRead = port.Read(data, 0, data.Length);
               string message = Encoding.ASCII.GetString(data, 0, bytesRead);
+              
               if(message.Length > 0){
                 result = message.Split(stringSeparators,StringSplitOptions.None);
                 if(result[5] != null && result[5] != ""){
@@ -79,16 +88,19 @@ public class COM : MonoBehaviour {
 
 
     public Vector3 LoadPositions(){
+      if(!port.IsOpen){
+        return new Vector3(0,0,0);
+      }
       float x,y,z;
       try{
        
         if(actualDevice == Device.Pen){
-           x = Mathf.Round(float.Parse(result[3], CultureInfo.InvariantCulture.NumberFormat) / divide);
-           y = Mathf.Round(float.Parse(result[4], CultureInfo.InvariantCulture.NumberFormat) / divide);
+           x = Mathf.Round(float.Parse(result[3], CultureInfo.InvariantCulture.NumberFormat));
+           y = Mathf.Round(float.Parse(result[4], CultureInfo.InvariantCulture.NumberFormat));
            z = float.Parse(result[5], CultureInfo.InvariantCulture.NumberFormat);
         } else {
-           x = Mathf.Round(float.Parse(result[0], CultureInfo.InvariantCulture.NumberFormat) / divide);
-           y = Mathf.Round(float.Parse(result[1], CultureInfo.InvariantCulture.NumberFormat) / divide);
+           x = Mathf.Round(float.Parse(result[0], CultureInfo.InvariantCulture.NumberFormat));
+           y = Mathf.Round(float.Parse(result[1], CultureInfo.InvariantCulture.NumberFormat));
           z = 0.0f;
       }
       } catch {
@@ -96,28 +108,40 @@ public class COM : MonoBehaviour {
         y = 0;
         z = 0;
       }
+      if(!port.IsOpen){
+        return new Vector3(0,0,0);
+      }
       return new Vector3(x, y, z);
     }
 
     public Vector3 LoadAngles(){
+      if(!port.IsOpen){
+        return new Vector3(0,0,0);
+      }
       float a1,a2,a3;
       try{
-        a1 = float.Parse(result[2], CultureInfo.InvariantCulture.NumberFormat) / divide;
-        a2 = float.Parse(result[3], CultureInfo.InvariantCulture.NumberFormat) / divide;
-        a3 = float.Parse(result[4], CultureInfo.InvariantCulture.NumberFormat) / divide;
+        a1 = float.Parse(result[2], CultureInfo.InvariantCulture.NumberFormat);
+        a2 = float.Parse(result[3], CultureInfo.InvariantCulture.NumberFormat);
+        a3 = float.Parse(result[4], CultureInfo.InvariantCulture.NumberFormat);
       } catch {
         a1 = 0;
         a2 = 0;
         a3 = 0;
       }
+ 
       return new Vector3(a1, a2, a3);
     }
 
 
-      public Vector3 LoadDeltas(){
-        float x,y,z;
+    public Vector3 LoadDeltas(){
+        if(!port.IsOpen){
+          return new Vector3(0,0,0);
+       }
+       float x,y,z;
+       x = y = z = 0;
+       if(actualDevice == Device.Pen){
         try{
-           x = float.Parse(result[0], CultureInfo.InvariantCulture.NumberFormat);
+          x = float.Parse(result[0], CultureInfo.InvariantCulture.NumberFormat);
           y = float.Parse(result[1], CultureInfo.InvariantCulture.NumberFormat);
           z = float.Parse(result[2], CultureInfo.InvariantCulture.NumberFormat);
         } catch{
@@ -125,8 +149,26 @@ public class COM : MonoBehaviour {
           y = 0;
           z = 0;
         }
+       } else {
+        
+         Vector3 posNow = new Vector3(float.Parse(result[0], CultureInfo.InvariantCulture.NumberFormat), 
+                                      float.Parse(result[1], CultureInfo.InvariantCulture.NumberFormat),
+                                      float.Parse(result[2], CultureInfo.InvariantCulture.NumberFormat));
+         x = lastPosition.x - posNow.x;
+         y = lastPosition.y - posNow.y; 
+         z = lastPosition.z - posNow.z; 
+         lastPosition = posNow;
+       }
+      
 
       return new Vector3(x, y, z);
     }
    
+    void OnApplicationQuit()
+    {
+      if(port.IsOpen){
+        port.Close();
+      }
+    }
+
   }

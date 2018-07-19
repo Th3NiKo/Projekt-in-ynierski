@@ -9,18 +9,11 @@ public class ShipStats : MonoBehaviour {
 
 	bool overSpawned = false;
 	static int points = 0;
-	void Start () {
-		
-	}
-	
-	
-	void Update () {
-		
-	}
+
 
 	void OnCollisionEnter(Collision other) {
 		if(other.transform.tag == "Meteor"){
-			TakeDamage();
+			//TakeDamage();
 			if(other.transform.GetComponent<Target>() != null){
 				
 			} else if(other.transform.GetChild(0) != null){
@@ -29,12 +22,12 @@ public class ShipStats : MonoBehaviour {
 				}
 			}
 		} else if(other.gameObject.tag == "Mesh"){
-			TakeDamage();
+			//TakeDamage();
 			this.transform.position = new Vector3(6,0,-1.84f);
 
 		}
 	}
-
+	
 	void TakeDamage(){
 		health--;
 		if(health <= 0){
