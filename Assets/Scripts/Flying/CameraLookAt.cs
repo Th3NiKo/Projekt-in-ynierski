@@ -9,15 +9,12 @@ public class CameraLookAt : MonoBehaviour {
 	public Transform target;
 	public Vector3 offset;
 
-	bool beforeClick = false;
-
 
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.C)){
 			follow = !follow;
 		}
 		
-	
 		if(Input.GetKey(KeyCode.X) && !Input.GetKey(KeyCode.Z)){
 			temporary = true;
 		}
@@ -28,7 +25,7 @@ public class CameraLookAt : MonoBehaviour {
 	void LateUpdate(){
 		if(follow && !temporary){
 			transform.position = target.position + offset;
-			transform.LookAt(target);
 		}
 	}
+
 }

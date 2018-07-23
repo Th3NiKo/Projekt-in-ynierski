@@ -6,6 +6,7 @@ using System.Threading;
 using System.Globalization;
 using System.Collections.Generic;
 
+
 public class COM : MonoBehaviour {
   
 
@@ -21,14 +22,25 @@ public class COM : MonoBehaviour {
 
     private Vector3 lastPosition;
 
-    
+    //For buttons only
+    private bool[] LastButton;
+
+
+    bool wiritngPen;
   
 
     void Start(){
+      wiritngPen = false;
+      //Two buttons set to 0 at start
+      LastButton = new bool [2];
+      LastButton[0] = false;
+      LastButton[1] = false;
+
+
       lastPosition = new Vector3(0,0,0);
-      port = new SerialPort("COM5", 9600, Parity.None, 8, StopBits.One);
+
+      port = new SerialPort(PlayerPrefs.GetString("COM"), 9600, Parity.None, 8, StopBits.One);
       
-      port.Close();
       lastLength = SerialPort.GetPortNames().Length;
 
      
@@ -45,14 +57,20 @@ public class COM : MonoBehaviour {
     
 
 	  void FixedUpdate(){
+		  
+		 if(Input.GetKeyDown(KeyCode.Escape)){
+       if(port.IsOpen)
+          port.Close();
+          Application.Quit();
+      }
+
+      if(Input.GetKeyDown(KeyCode.Return)){
+        wiritngPen = !wiritngPen;
+      }
       
         if(!port.IsOpen){
-          port = new SerialPort( "COM5", 9600, Parity.None, 8, StopBits.One);
-          
-
-           if(!port.IsOpen){
-            port.Open();
-           }
+          port = new SerialPort( PlayerPrefs.GetString("COM"), 9600, Parity.None, 8, StopBits.One);
+          port.Open(); 
         }
 
         if(port.IsOpen){
@@ -82,8 +100,36 @@ public class COM : MonoBehaviour {
            lastLength = SerialPort.GetPortNames().Length;
 	  }
 
+
+    void LateUpdate()
+    {
+      if(port.IsOpen){
+      
+        if(result.Length > 5){
+          if(result[6] == "1"){
+            LastButton[0] = true;
+          } else{
+            LastButton[0] = false;
+          }
+        }
+
+         if(result.Length > 6){
+          if(result[7] == "1"){
+            LastButton[1] = true;
+          } else{
+            LastButton[1] = false;
+          }
+        }
+      }
+
+    }
+
     public Device GetActualDevice(){
       return actualDevice;
+    }
+
+    public bool IsWritingPen(){
+      return wiritngPen;
     }
 
 
@@ -163,6 +209,27 @@ public class COM : MonoBehaviour {
 
       return new Vector3(x, y, z);
     }
+
+
+    public bool ButtonPressed(int index){
+      return result[6 + index] == "1";
+    }
+
+    public bool ButtonPressedDown(int index){
+      if(result[6 + index] == "1" && !LastButton[index]){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    public bool ButtonPressedUp(int index){
+      if(result[6 + index] == "0" && LastButton[index]){
+        return true;
+      } else {
+        return false;
+      }
+    }
    
     void OnApplicationQuit()
     {
@@ -170,5 +237,6 @@ public class COM : MonoBehaviour {
         port.Close();
       }
     }
+    
 
   }

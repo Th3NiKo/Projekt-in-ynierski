@@ -66,6 +66,8 @@ public class UIManager : MonoBehaviour {
 	private float offset = 0.315f;
 	private float offsetMove = 320;
 
+	public bool Keyboard;
+
 	void Start () {
 		msg = Camera.main.GetComponent<COM>();
 		
@@ -127,22 +129,42 @@ public class UIManager : MonoBehaviour {
 			ScaleText.text = (Mathf.Round(scaleValue * 100.0f) / 100.0f).ToString();
 		}
 
-		if(Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.X)){
-			if(msg.GetActualDevice() == COM.Device.Pen){
-				scaleValue -= 10f;
-			} else {
-				scaleValue -= 0.5f;
+		if(Keyboard){
+			if(Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.X)){
+				if(msg.GetActualDevice() == COM.Device.Pen){
+					scaleValue -= 10f;
+				} else {
+					scaleValue -= 0.5f;
+				}
+			} else if(Input.GetKey(KeyCode.X) && !Input.GetKey(KeyCode.Z)){
+				if(msg.GetActualDevice() == COM.Device.Pen){
+					scaleValue += 10f;
+				} else {
+					scaleValue += 0.5f;
+				}
 			}
-		} else if(Input.GetKey(KeyCode.X) && !Input.GetKey(KeyCode.Z)){
-			if(msg.GetActualDevice() == COM.Device.Pen){
-				scaleValue += 10f;
-			} else {
-				scaleValue += 0.5f;
-			}
-		}
 
-		if(Input.GetKey(KeyCode.Z) && Input.GetKey(KeyCode.X)){
-			x = y = z = a1 = a2 = a3 = 0;
+			if(Input.GetKey(KeyCode.Z) && Input.GetKey(KeyCode.X)){
+				x = y = z = a1 = a2 = a3 = 0;
+			}
+		} else {
+			if(msg.ButtonPressed(0) && !msg.ButtonPressed(1)){
+				if(msg.GetActualDevice() == COM.Device.Pen){
+					scaleValue -= 10f;
+				} else {
+					scaleValue -= 0.5f;
+				}
+			} else if(msg.ButtonPressed(1) && !msg.ButtonPressed(1)){
+				if(msg.GetActualDevice() == COM.Device.Pen){
+					scaleValue += 10f;
+				} else {
+					scaleValue += 0.5f;
+				}
+			}
+
+			if(msg.ButtonPressed(0) && msg.ButtonPressed(1)){
+				x = y = z = a1 = a2 = a3 = 0;
+			}
 		}
 
 		//Scale for each device
@@ -183,7 +205,7 @@ public class UIManager : MonoBehaviour {
 		y = Mathf.Clamp(y,min, max);
 
 		z += (delta.z * scaleValue);
-		z = Mathf.Clamp(z,min,max * 2);
+		z = Mathf.Clamp(z,min,max);
 		
 
 		//X filling
@@ -207,12 +229,12 @@ public class UIManager : MonoBehaviour {
 			YFillRight.fillAmount = y / maxValue;
 			
 			YLeft.text = "";
-			YRight.text = (Mathf.Round(z / scaleValue)).ToString();
+			YRight.text = (Mathf.Round(y / scaleValue)).ToString();
 		} else {
 			YFillLeft.fillAmount = -y / maxValue;
 			YFillRight.fillAmount = 0;
 			
-			YLeft.text = (Mathf.Round(z / scaleValue)).ToString();
+			YLeft.text = (Mathf.Round(y / scaleValue)).ToString();
 			YRight.text = "";
 		}
 
