@@ -15,6 +15,9 @@ public class SelectCOM : MonoBehaviour {
 	void Start () {
 		dropdown = GetComponent<TMP_Dropdown>();
 		List<string> allComs = new List<string>();
+		if(SerialPort.GetPortNames().Length == 1){
+			button.onClick.Invoke();
+		}
 		for(int i = 0; i < SerialPort.GetPortNames().Length; i++){
 			allComs.Add(SerialPort.GetPortNames()[i]);
 		}

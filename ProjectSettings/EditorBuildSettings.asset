@@ -11,10 +11,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Flying.unity
     guid: 3a35c5a1d1ee16240bec78e4371047e9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Menu COM/comload.unity
     guid: 923731e57373dec4dbcceefafb0eaa1e
   - enabled: 1
+    path: Assets/TutorialDrawing/tutorialTechnical.unity
+    guid: 56ec59d65be71d14f9a0b5b7274374b6
+  - enabled: 0
+    path: Assets/TutorialDrawing/tutorial.unity
+    guid: 5c9ded66cf9976740b1e19a3daf68228
+  - enabled: 0
     path: Assets/Drawing.unity
     guid: 97cd6524dc4984448b6fa66dccf9617c
   - enabled: 0
@@ -26,7 +32,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Menu.unity
     guid: f775ab96c7e749647a3f7903caab00c9
-  - enabled: 0
+  - enabled: 1
     path: Assets/Techincal.unity
     guid: 126d9ec2b4bd6534e8a5909455fd4b14
   m_configObjects: {}

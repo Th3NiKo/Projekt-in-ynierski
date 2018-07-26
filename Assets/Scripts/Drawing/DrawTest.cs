@@ -18,7 +18,7 @@ public class DrawTest : MonoBehaviour {
 
 	public float actualRadius = 0.1f;
 	
-	public bool Keyboard;
+	public bool Keyboard = false;
 
 	public GameObject cameraUp;
 	void Start () {
@@ -72,53 +72,55 @@ public class DrawTest : MonoBehaviour {
 			//                               PEN
 			//************************************************************************
 			if(msg.IsWritingPen()){
+				
 				//************************************************************************
 				//                               WRITING PEN
 				//************************************************************************
 				//Destroying
-				if(Input.GetKey(KeyCode.X) && msg.ButtonPressed(0)){
+				if(Input.GetKey(KeyCode.X) && (msg.ButtonPressed(0) || Input.GetKey(KeyCode.Z))){
 					DestroyAll();
 				}
 
 				//Rotating
-				if(Input.GetKey(KeyCode.X) && !msg.ButtonPressed(0)){
+				if(Input.GetKey(KeyCode.X) && (!msg.ButtonPressed(0) || !Input.GetKey(KeyCode.Z))){
 					RotateAll();
 				}
 
 				//Drawing
-				if(msg.ButtonPressed(0) && !Input.GetKey(KeyCode.X)){
+				if((msg.ButtonPressed(0) || Input.GetKey(KeyCode.Z)) && !Input.GetKey(KeyCode.X)){
 					Draw();
 				} else {
 					ClearMesh();
 				}
 
 				//Drawing creation
-				if(msg.ButtonPressedUp(0)){
+				if(msg.ButtonPressedUp(0) || Input.GetKeyUp(KeyCode.Z)){
 					CreateMesh();
 				}
 			} else {
+				//Drawing
+				if((msg.ButtonPressed(0) || Input.GetKey(KeyCode.Z)) && (!msg.ButtonPressed(1) && !Input.GetKey(KeyCode.X))){
+					Draw();
+				} else {
+					ClearMesh();
+				}
 				//************************************************************************
 				//                               2-Buttons PEN
 				//************************************************************************
 				//Destroying
-				if(msg.ButtonPressed(1) && msg.ButtonPressed(0)){
+				if((msg.ButtonPressed(1) || Input.GetKey(KeyCode.X)) && (msg.ButtonPressed(0) || Input.GetKey(KeyCode.Z))){
 					DestroyAll();
 				}
 
 				//Rotating
-				if(msg.ButtonPressed(1) && !msg.ButtonPressed(0)){
+				if((msg.ButtonPressed(1) || Input.GetKey(KeyCode.X)) && (!msg.ButtonPressed(0) || !Input.GetKey(KeyCode.Z))){
 					RotateAll();
 				}
 
-				//Drawing
-				if(msg.ButtonPressed(0) && !msg.ButtonPressed(1)){
-					Draw();
-				} else {
-					ClearMesh();
-				}
+				
 
 				//Drawing creation
-				if(msg.ButtonPressedUp(0)){
+				if(msg.ButtonPressedUp(0) || Input.GetKeyUp(KeyCode.Z)){
 					CreateMesh();
 				}
 			}
@@ -133,12 +135,13 @@ public class DrawTest : MonoBehaviour {
 			Destroy(allItems[i]);
 		}
 		GetComponent<MeshFilter>().mesh.Clear();
+		GetComponent<MeshFilter>().sharedMesh.Clear();
 	}
 
 	void RotateAll(){
 		GameObject [] allMeshes = GameObject.FindGameObjectsWithTag("Mesh");
 		for(int i = 0; i < allMeshes.Length; i++){
-			allMeshes[i].transform.RotateAround(new Vector3(0,0,0), new Vector3(0,3,0), delta.x / 5);
+			allMeshes[i].transform.RotateAround(new Vector3(0,0,-3), new Vector3(0,3,0), delta.x / 5);
 		}
 	}
 

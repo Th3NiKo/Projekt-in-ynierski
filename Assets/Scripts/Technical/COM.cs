@@ -16,7 +16,7 @@ public class COM : MonoBehaviour {
 
     //String change
     string[] stringSeparators = new string[] {"\n"};
-    static string[] result;
+    public string[] result;
     Device actualDevice = Device.Ufo;
     int lastLength = 0;
 
@@ -28,22 +28,42 @@ public class COM : MonoBehaviour {
 
     bool wiritngPen;
   
-
+    string comName;
     void Start(){
       wiritngPen = false;
       //Two buttons set to 0 at start
       LastButton = new bool [2];
       LastButton[0] = false;
       LastButton[1] = false;
-
-
+      result = new string[] {"0","0","0","0","0"};
       lastPosition = new Vector3(0,0,0);
+      if(SerialPort.GetPortNames().Length > 0)  
+        comName = SerialPort.GetPortNames()[0];
 
-      port = new SerialPort(PlayerPrefs.GetString("COM"), 9600, Parity.None, 8, StopBits.One);
+      
+      for(int i = 0; i < SerialPort.GetPortNames().Length; i++){
+        port = new SerialPort(SerialPort.GetPortNames()[i], 9600, Parity.None, 8, StopBits.One);
+        if(!port.IsOpen){
+          port.Open();
+          if(port.BytesToRead != 0){
+            
+              byte[] data = new byte[1024];
+              int bytesRead = port.Read(data, 0, data.Length);
+              string message = Encoding.ASCII.GetString(data, 0, bytesRead);
+              result = message.Split(stringSeparators,StringSplitOptions.None);
+              if(result.Length > 5){
+                comName = SerialPort.GetPortNames()[i];
+                break;
+              }
+          }
+          
+
+        }
+      }
+      
       
       lastLength = SerialPort.GetPortNames().Length;
 
-     
       port.RtsEnable = true;
 
       if(!port.IsOpen){
@@ -51,7 +71,7 @@ public class COM : MonoBehaviour {
       }
      
      port.ReadTimeout = 50;
-     result = new string[] {"0","0","0","0","0"};
+     
     
     }
     
@@ -64,12 +84,13 @@ public class COM : MonoBehaviour {
           Application.Quit();
       }
 
-      if(Input.GetKeyDown(KeyCode.Return)){
-        wiritngPen = !wiritngPen;
-      }
+      //if(Input.GetKeyDown(KeyCode.Return)){
+       // wiritngPen = !wiritngPen;
+     // }
       
         if(!port.IsOpen){
-          port = new SerialPort( PlayerPrefs.GetString("COM"), 9600, Parity.None, 8, StopBits.One);
+
+          port = new SerialPort( comName, 9600, Parity.None, 8, StopBits.One);
           port.Open(); 
         }
 
@@ -82,7 +103,7 @@ public class COM : MonoBehaviour {
               byte[] data = new byte[1024];
               int bytesRead = port.Read(data, 0, data.Length);
               string message = Encoding.ASCII.GetString(data, 0, bytesRead);
-              
+              //Debug.Log(message);
               if(message.Length > 0){
                 result = message.Split(stringSeparators,StringSplitOptions.None);
                 if(result[5] != null && result[5] != ""){
@@ -104,20 +125,20 @@ public class COM : MonoBehaviour {
     void LateUpdate()
     {
       if(port.IsOpen){
-      
-        if(result.Length > 5){
-          if(result[6] == "1"){
+        int temp = 0;
+        if(result.Length > 6 && Int32.TryParse(result[6], out temp)){
+          if(temp == 1){
             LastButton[0] = true;
           } else{
             LastButton[0] = false;
           }
         }
-
-         if(result.Length > 6){
-          if(result[7] == "1"){
+        temp = 0;
+         if(result.Length > 7 && Int32.TryParse(result[7], out temp)){
+          if(temp == 1){
             LastButton[1] = true;
           } else{
-            LastButton[1] = false;
+            LastButton[1] = false; 
           }
         }
       }
@@ -212,20 +233,39 @@ public class COM : MonoBehaviour {
 
 
     public bool ButtonPressed(int index){
-      return result[6 + index] == "1";
+      int temp = 0;
+      if(result.Length > 6 + index  && (Int32.TryParse(result[6 + index], out temp))){
+        if(temp == 1){
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
     }
 
     public bool ButtonPressedDown(int index){
-      if(result[6 + index] == "1" && !LastButton[index]){
-        return true;
+      int temp = 0;
+      if((result.Length > 6 + index) && (Int32.TryParse(result[6 + index], out temp))){
+        if(temp == 1 && !LastButton[index]){
+          return true;
+        } else {
+          return false;
+        }
       } else {
         return false;
       }
     }
 
     public bool ButtonPressedUp(int index){
-      if(result[6 + index] == "0" && LastButton[index]){
-        return true;
+      int temp = 0;
+      if((result.Length > 6 + index) && (Int32.TryParse(result[6 + index], out temp))){
+        if(temp == 0 && LastButton[index]){
+          return true;
+        } else {
+          return false;
+        }
       } else {
         return false;
       }

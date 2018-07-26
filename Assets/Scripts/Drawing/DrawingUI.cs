@@ -40,12 +40,17 @@ public class DrawingUI : MonoBehaviour {
 			sequence.Append(DOTween.ToAlpha(()=> deviceColor, x=> deviceColor = x, 1, 1));
 			sequence.Append(DOTween.ToAlpha(()=> deviceColor, x=> deviceColor = x, 0, 1));
 		}
+		lastDevice = com.IsWritingPen();
 		lastSensitivity = kursor.Divide;
 		
 	}
 	void OnGUI() {
 		sensitivityText.color = actualColor;
-		sensitivityText.text ="Sensitivity: " + (1010-kursor.Divide).ToString();
+		if(kursor.OnDeltas){
+			sensitivityText.text ="Sensitivity: " + (1010-kursor.Divide).ToString();
+		} else {
+			sensitivityText.text ="Sensitivity: " + (20000 -kursor.Divide).ToString();
+		}
 
 		deviceText.color = deviceColor;
 		if(com.IsWritingPen()){

@@ -8,6 +8,15 @@ public class CameraLookAt : MonoBehaviour {
 	private bool temporary = false;
 	public Transform target;
 	public Vector3 offset;
+	
+
+	COM com;
+	DrawTest draw;
+
+	void Start(){
+		com = GetComponent<COM>();
+		draw = GameObject.Find("Tube").GetComponent<DrawTest>();
+	}
 
 
 	void Update(){
@@ -15,11 +24,34 @@ public class CameraLookAt : MonoBehaviour {
 			follow = !follow;
 		}
 		
-		if(Input.GetKey(KeyCode.X) && !Input.GetKey(KeyCode.Z)){
-			temporary = true;
+		//2 button
+		if(!draw.Keyboard && !com.IsWritingPen()){	
+			if((com.ButtonPressed(1) || Input.GetKey(KeyCode.X)) && !com.ButtonPressed(0)){
+				temporary = true;
+			} 
+			if(com.ButtonPressedUp(1) || Input.GetKeyUp(KeyCode.X)){
+				temporary = false;
+			}
 		}
-		if(Input.GetKeyUp(KeyCode.X)){
-			temporary = false;
+
+		//Writing pen
+		if(!draw.Keyboard && com.IsWritingPen()){
+			if(Input.GetKey(KeyCode.X) && (!com.ButtonPressed(0))){
+				temporary = true;
+			} 
+			if(Input.GetKeyUp(KeyCode.X)){
+				temporary = false;
+			}
+		}
+
+		//Keyboard
+		if(draw.Keyboard){
+			if(Input.GetKey(KeyCode.X) && !Input.GetKey(KeyCode.Z)){
+				temporary = true;
+			}
+			if(Input.GetKeyUp(KeyCode.X)){
+				temporary = false;
+			}
 		}
 	}
 	void LateUpdate(){

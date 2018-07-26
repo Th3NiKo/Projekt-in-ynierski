@@ -31,17 +31,17 @@ public class UIFillPositions : MonoBehaviour {
 	void FixedUpdate () {
 
 			if(msg.GetActualDevice() == COM.Device.Pen){
-				x.text = "X: " + msg.LoadPositions ().x.ToString ();
-				y.text = "Y: " + msg.LoadPositions ().y.ToString ();
-				a1.text = "Z: " + msg.LoadPositions().z.ToString ();
+				x.text = "X: " + msg.LoadDeltas().x.ToString ();
+				y.text = "Y: " + msg.LoadDeltas().y.ToString ();
+				a1.text = "Z: " + msg.LoadDeltas().z.ToString ();
 				a2.text = "DeltaX:: " + msg.LoadDeltas ().x.ToString ();
-				a3.text = "DeltaY:: " + msg.LoadDeltas ().y.ToString ();
+				a3.text = "button: " + msg.result[6];
 			} else {
 				x.text = "X: " + msg.LoadPositions ().x.ToString ();
 				y.text = "Y: " + msg.LoadPositions ().y.ToString ();
 				a1.text = "A1: " + msg.LoadAngles().x.ToString ();
 				a2.text = "A2: " + msg.LoadAngles ().y.ToString ();
-				a3.text = "A3: " + msg.LoadAngles ().z.ToString ();
+				a3.text = "button: " + msg.ButtonPressed(0).ToString ();
 			}
 			
 	}

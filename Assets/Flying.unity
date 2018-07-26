@@ -492,6 +492,7 @@ MonoBehaviour:
   angles: {x: 0, y: 0, z: 0}
   MaxRangeInput: 20000
   MaxRangeOutput: 12
+  Keyboard: 1
   msg: {fileID: 1938710487}
 --- !u!1001 &181613361
 Prefab:
@@ -1384,6 +1385,10 @@ Prefab:
     - target: {fileID: 224708824052714382, guid: ca019f277c4d0d04d916f706f7afcadf,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154556427734132, guid: ca019f277c4d0d04d916f706f7afcadf, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -11926,7 +11931,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.3820755, g: 0.45234936, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -12011,6 +12016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266c06724d4501f4ab762f0ee4bf7e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  result: []
 --- !u!114 &1938710488
 MonoBehaviour:
   m_ObjectHideFlags: 0
