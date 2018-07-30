@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cursor : MonoBehaviour {
+public class CursorMy : MonoBehaviour {
 	/*
 	 * Name of GameObject has to be Cursor to work properly with turning on/off sounds.
 	 * 
