@@ -89,9 +89,12 @@ public class COM : MonoBehaviour {
      // }
       
         if(!port.IsOpen){
+            try {
+                port = new SerialPort(comName, 9600, Parity.None, 8, StopBits.One);
+                port.Open();
+            } catch {
 
-          port = new SerialPort( comName, 9600, Parity.None, 8, StopBits.One);
-          port.Open(); 
+            }
         }
 
         if(port.IsOpen){

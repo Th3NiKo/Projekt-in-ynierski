@@ -20,6 +20,7 @@ public class CursorOnBox : MonoBehaviour {
 	public Vector2 minMaxY;
 	public Vector2 minMaxZ;
 
+
 	bool lastWriting;
 
 	void Start () {
@@ -72,6 +73,7 @@ public class CursorOnBox : MonoBehaviour {
 
 		if(!OnDeltas){
 			position = msg.LoadPositions ();
+            
 			Vector3 newPos = new Vector3(position.x / Divide, position.y / Divide, -position.z / Divide);
 			newPos = new Vector3(Mathf.Clamp(newPos.x, minMaxX.x, minMaxX.y),                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 								 Mathf.Clamp(newPos.y, minMaxY.x, minMaxY.y),

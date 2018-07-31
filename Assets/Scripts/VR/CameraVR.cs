@@ -6,21 +6,21 @@ public class CameraVR : MonoBehaviour {
 
 	public float angle = 5;
 	public float shift = 0.3f;
+    public GameObject cameraTemplate;
 	void Start () {
-		//Instantiate eyes
-		GameObject leftEye = Instantiate(this.gameObject);
-		GameObject rightEye = Instantiate(this.gameObject);
+        //Instantiate eyes
+        
+		GameObject leftEye = Instantiate(cameraTemplate);
+		GameObject rightEye = Instantiate(cameraTemplate);
+        leftEye.name = "LeftEye";
+        rightEye.name = "RightEye";
 
-		//Parent objects
-		leftEye.transform.parent = this.gameObject.transform;
-		rightEye.transform.parent = this.gameObject.transform;
+        //Parent objects
+        leftEye.transform.SetParent(this.gameObject.transform);
+		rightEye.transform.SetParent(this.gameObject.transform);
 
 		//Turn Off camera on main
-		this.GetComponent<Camera>().enabled = false;
-
-		//Turn off COM on eyes
-		leftEye.GetComponent<COM>().enabled = false;
-		rightEye.GetComponent<COM>().enabled = false;
+		//this.GetComponent<Camera>().enabled = false;
 
 		//Move on X eyes
 		//If has camera look at 

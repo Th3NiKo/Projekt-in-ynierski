@@ -14,8 +14,11 @@ public class CameraLookAt : MonoBehaviour {
 	DrawTest draw;
 
 	void Start(){
-		com = GetComponent<COM>();
+		com = Camera.main.GetComponent<COM>();
 		draw = GameObject.Find("Tube").GetComponent<DrawTest>();
+        if(target == null) {
+            target = GameObject.Find("Kursor").transform;
+        }
 	}
 
 
@@ -56,6 +59,7 @@ public class CameraLookAt : MonoBehaviour {
 	}
 	void LateUpdate(){
 		if(follow && !temporary){
+            if(target != null)
 			transform.position = target.position + offset;
 		}
 	}

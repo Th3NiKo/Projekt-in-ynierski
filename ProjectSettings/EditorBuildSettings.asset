@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Menu COM/comload.unity
     guid: 923731e57373dec4dbcceefafb0eaa1e
-  - enabled: 1
+  - enabled: 0
     path: Assets/TutorialDrawing/tutorialTechnical.unity
     guid: 56ec59d65be71d14f9a0b5b7274374b6
   - enabled: 0
@@ -32,7 +32,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Menu.unity
     guid: f775ab96c7e749647a3f7903caab00c9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Techincal.unity
     guid: 126d9ec2b4bd6534e8a5909455fd4b14
+  - enabled: 1
+    path: Assets/Percusion/Percusion.unity
+    guid: b4396d9fbd0171d4da5b30e8fddd5426
   m_configObjects: {}
