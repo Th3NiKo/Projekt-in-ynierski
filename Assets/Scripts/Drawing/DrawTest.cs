@@ -141,7 +141,7 @@ public class DrawTest : MonoBehaviour {
 	void RotateAll(){
 		GameObject [] allMeshes = GameObject.FindGameObjectsWithTag("Mesh");
 		for(int i = 0; i < allMeshes.Length; i++){
-			allMeshes[i].transform.RotateAround(new Vector3(0,0,-3), new Vector3(0,3,0), 20 / 5);
+			allMeshes[i].transform.RotateAround(new Vector3(0,0,-3), new Vector3(0,3,0), delta.x / 5);
 		}
 	}
 

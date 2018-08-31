@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class CursorOnBox : MonoBehaviour {
 
 	[SerializeField] Vector3 position;
@@ -19,7 +19,7 @@ public class CursorOnBox : MonoBehaviour {
 	public Vector2 minMaxX;
 	public Vector2 minMaxY;
 	public Vector2 minMaxZ;
-
+    private Vector3 startPos;
 
 	bool lastWriting;
 
@@ -29,7 +29,14 @@ public class CursorOnBox : MonoBehaviour {
 		} else {
 			Divide = 400;
 		}
-		this.transform.position = new Vector3(0f,1.5f,0f);
+        if (SceneManager.GetActiveScene().name == "DrawingVR") {
+            
+            
+        } else {
+            Divide = 1950;
+            startPos = new Vector3(0f, 0.0f, -10.0f);
+            this.transform.position = startPos;
+        }
 		msg = Camera.main.GetComponent<COM>();
 		lastWriting = msg.IsWritingPen();
 	}
@@ -37,21 +44,17 @@ public class CursorOnBox : MonoBehaviour {
 	
 	void Update () {
 
-		if(msg.IsWritingPen() != lastWriting){
-			if(msg.IsWritingPen()){
-				Divide = 8000;
-			} else {
-				Divide = 400;
-			}
-		}
 
+
+        //Do zmiany
 		if(msg.IsWritingPen()){
 			OnDeltas = false;
 		} else {
 			OnDeltas = true;
 		}
 		if(Input.GetKey(KeyCode.R)){
-			this.transform.position = new Vector3(0,1,0);
+            this.transform.position = startPos;
+            msg.SendError();
 		}
 		if(!OnDeltas){
 		//Sensitivity
@@ -63,10 +66,10 @@ public class CursorOnBox : MonoBehaviour {
 			}
 		} else {
 			if(Input.GetKey(KeyCode.Alpha1)){
-				Divide += 1;
+				Divide += 10;
 			
 			} else if(Input.GetKey(KeyCode.Alpha2)){
-				Divide -= 1;
+				Divide -= 10;
 			}
 		}
 			//Divide = Mathf.Clamp(Divide,10, 1000);
@@ -96,10 +99,11 @@ public class CursorOnBox : MonoBehaviour {
 			}
 
 			Vector3 newPos = new Vector3(transform.position.x + (deltas.x / Divide), transform.position.y + (deltas.y / Divide), transform.position.z -(deltas.z / Divide));
-			newPos = new Vector3(Mathf.Clamp(newPos.x, minMaxX.x, minMaxX.y),                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+			newPos = new Vector3(Mathf.Clamp(newPos.x, minMaxX.x, minMaxX.y),                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 								 Mathf.Clamp(newPos.y, minMaxY.x, minMaxY.y),
 								 Mathf.Clamp(newPos.z, minMaxZ.x, minMaxZ.y));
-			this.transform.position = newPos;
+            this.transform.position = newPos;
+            
 		}
 		lastWriting = msg.IsWritingPen();
 	}

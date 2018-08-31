@@ -50,6 +50,7 @@ public class COM : MonoBehaviour {
               byte[] data = new byte[1024];
               int bytesRead = port.Read(data, 0, data.Length);
               string message = Encoding.ASCII.GetString(data, 0, bytesRead);
+              
               result = message.Split(stringSeparators,StringSplitOptions.None);
               if(result.Length > 5){
                 comName = SerialPort.GetPortNames()[i];
@@ -106,7 +107,7 @@ public class COM : MonoBehaviour {
               byte[] data = new byte[1024];
               int bytesRead = port.Read(data, 0, data.Length);
               string message = Encoding.ASCII.GetString(data, 0, bytesRead);
-              //Debug.Log(message);
+              Debug.Log(message);
               if(message.Length > 0){
                 result = message.Split(stringSeparators,StringSplitOptions.None);
                 if(result[5] != null && result[5] != ""){
@@ -272,6 +273,20 @@ public class COM : MonoBehaviour {
       } else {
         return false;
       }
+    }
+
+    public int IsCalibrated() {
+        int temp = 0;
+        if(result.Length > 8) {
+            Int32.TryParse(result[8], out temp);
+        }
+        return temp;
+    }
+
+    public void SendError() {
+        if (port.IsOpen) {
+            port.Write("1");
+        }
     }
    
     void OnApplicationQuit()

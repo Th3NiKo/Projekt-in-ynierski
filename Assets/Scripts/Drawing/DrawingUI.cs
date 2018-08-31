@@ -46,11 +46,8 @@ public class DrawingUI : MonoBehaviour {
 	}
 	void OnGUI() {
 		sensitivityText.color = actualColor;
-		if(kursor.OnDeltas){
-			sensitivityText.text ="Sensitivity: " + (1010-kursor.Divide).ToString();
-		} else {
-			sensitivityText.text ="Sensitivity: " + (20000 -kursor.Divide).ToString();
-		}
+		sensitivityText.text ="Sensitivity: " + (15000-kursor.Divide).ToString();
+
 
 		deviceText.color = deviceColor;
 		if(com.IsWritingPen()){

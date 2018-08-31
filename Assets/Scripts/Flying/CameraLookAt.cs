@@ -60,7 +60,8 @@ public class CameraLookAt : MonoBehaviour {
 	void LateUpdate(){
 		if(follow && !temporary){
             if(target != null)
-			transform.position = target.position + offset;
+			this.transform.position = target.position + offset;
+            //this.transform.parent.rotation = this.transform.rotation;
 		}
 	}
 
