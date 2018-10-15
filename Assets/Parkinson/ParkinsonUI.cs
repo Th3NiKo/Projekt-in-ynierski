@@ -19,6 +19,7 @@ public class ParkinsonUI : MonoBehaviour {
     Image zImage;
 
     //Stats
+    TextMeshProUGUI propabilityText;
     TextMeshProUGUI timerText;
     TextMeshProUGUI freqText;
     private float timer = 0.0f;
@@ -48,6 +49,7 @@ public class ParkinsonUI : MonoBehaviour {
         //Stats
         timerText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         freqText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        propabilityText = transform.GetChild(6).GetComponent<TextMeshProUGUI>();
 
 
         handObj = GameObject.Find("Hand");
@@ -60,6 +62,7 @@ public class ParkinsonUI : MonoBehaviour {
         ClampScale(yImage, minScale, maxScale);
         ClampScale(zImage, minScale, maxScale);
 
+        ShowText();
         DetectAnomaly();
         ResetBoard();
         ShowAnomaly();
@@ -69,6 +72,26 @@ public class ParkinsonUI : MonoBehaviour {
 
 
 
+    }
+
+    void ShowText()
+    {
+        if(timer >= 30.0f)
+        {
+            if (counter / timer <= 8) {
+                propabilityText.text = "There is low chance of having parkinson";
+            } else if(counter / timer <= 15)
+            {
+                propabilityText.text = "There is something wrong with hand movement";
+            } else
+            {
+                propabilityText.text = "There is high chance of having parkinson";
+            }
+            propabilityText.enabled = true;
+        } else
+        {
+            propabilityText.enabled = false;
+        }
     }
 
     void SetImages() {

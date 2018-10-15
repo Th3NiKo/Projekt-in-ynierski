@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Drawing.unity
     guid: 97cd6524dc4984448b6fa66dccf9617c
-  - enabled: 1
+  - enabled: 0
     path: Assets/DrawingVR.unity
     guid: cab950bd590c29f4bb0e689fb4a69243
   - enabled: 0
@@ -35,7 +35,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Menu.unity
     guid: f775ab96c7e749647a3f7903caab00c9
-  - enabled: 0
+  - enabled: 1
     path: Assets/Techincal.unity
     guid: 126d9ec2b4bd6534e8a5909455fd4b14
   - enabled: 0

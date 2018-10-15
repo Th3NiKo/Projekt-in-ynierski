@@ -50,7 +50,7 @@ public class PercussionOnBox : MonoBehaviour {
         if (!OnDeltas) {
             position = msg.LoadPositions();
 
-            Vector3 newPos = new Vector3(position.x / Divide, position.y / Divide, -position.z / Divide);
+            Vector3 newPos = new Vector3(position.x / Divide, position.y / Divide, (-position.z + 130000) / Divide);
             newPos = new Vector3(Mathf.Clamp(newPos.x, minMaxX.x, minMaxX.y),
                                  Mathf.Clamp(newPos.y, minMaxY.x, minMaxY.y),
                                  Mathf.Clamp(newPos.z, minMaxZ.x, minMaxZ.y));

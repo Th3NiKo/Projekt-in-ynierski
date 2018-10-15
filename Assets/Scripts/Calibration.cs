@@ -16,6 +16,8 @@ public class Calibration : MonoBehaviour {
 	
 	
 	void Update () {
+       
+
         if (com.IsCalibrated() == 0) {
             img.enabled = false;
             text.enabled = false;
