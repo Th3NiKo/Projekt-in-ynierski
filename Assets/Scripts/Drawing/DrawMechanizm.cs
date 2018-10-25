@@ -76,7 +76,33 @@ public class DrawMechanizm : MonoBehaviour
 
             }
         }
+        else
+        {
+            if (pressed)
+            {
+                GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                sphere.transform.position = lastPosition;
+                sphere.transform.localScale = ballSize;
+                sphere.GetComponent<MeshRenderer>().material = material;
+                sphere.tag = "Mesh";
+            }
 
+            kursorHelper.GetComponent<MeshRenderer>().material = material;
+
+            Vector3 rotateBy = lastPosition - this.transform.position;
+            if (rotateBy != Vector3.zero)
+            {
+                Quaternion temporary = Quaternion.LookRotation(rotateBy);
+                temporary = Quaternion.Euler(temporary.eulerAngles.x + 90, temporary.eulerAngles.y, temporary.eulerAngles.z);
+                kursorHelper.transform.rotation = temporary;
+            }
+
+
+            kursorHelper.transform.position = this.transform.position;
+            kursorHelper.transform.localScale = size;
+            lastPosition = this.transform.position;
+            pressed = false;
+        }
 
 
     }
