@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SpaceNavigatorDriver;
 using DG.Tweening;
 public class DrawTest : MonoBehaviour {
 

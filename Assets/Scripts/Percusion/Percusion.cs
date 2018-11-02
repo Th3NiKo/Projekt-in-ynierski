@@ -75,7 +75,7 @@ public class Percusion : MonoBehaviour {
 
         Vector3 rayPosition = this.transform.position;
         rayPosition.y -= 0.1f;
-        if (Physics.Raycast(rayPosition, new Vector3(0, -1, 0), out hit, 25)) {
+        if (Physics.Raycast(rayPosition, new Vector3(0, -1, 0), out hit, 100)) {
             bool good = Int32.TryParse(hit.collider.name, out actualPerc);
             if (!good) {
                 actualPerc = lastPerc;

@@ -113,9 +113,44 @@ public class UIManager : MonoBehaviour {
 		Tick = transform.GetChild(5).GetChild(1).GetComponent<Image>();
 		ScaleText = transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>();
 	}
-	
-	
-	void Update () {
+
+    private void FixedUpdate()
+    {
+        if (Keyboard)
+        {
+            if (Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.X))
+            {
+                if (msg.GetActualDevice() == COM.Device.Pen)
+                {
+                    scaleValue -= 10.0f;
+                }
+                else
+                {
+                    scaleValue -= 10.0f;
+                }
+            }
+            else if (Input.GetKey(KeyCode.X) && !Input.GetKey(KeyCode.Z))
+            {
+                if (msg.GetActualDevice() == COM.Device.Pen)
+                {
+                    scaleValue += 10.0f;
+                }
+                else
+                {
+                    scaleValue += 10.0f;
+                }
+            }
+
+            if (Input.GetKey(KeyCode.Z) && Input.GetKey(KeyCode.X))
+            {
+                x = y = z = a1 = a2 = a3 = 0;
+            }
+        }
+    }
+
+
+
+    void Update () {
 
 		//Scaling up and down
 		Tick.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(
@@ -128,7 +163,7 @@ public class UIManager : MonoBehaviour {
 		} else {
 			ScaleText.text = (Mathf.Round(scaleValue * 100.0f) / 100.0f).ToString();
 		}
-
+        /*
 		if(Keyboard){
 			if(Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.X)){
 				if(msg.GetActualDevice() == COM.Device.Pen){
@@ -165,7 +200,7 @@ public class UIManager : MonoBehaviour {
 			if(msg.ButtonPressed(0) && msg.ButtonPressed(1)){
 				x = y = z = a1 = a2 = a3 = 0;
 			}
-		}
+		}*/
 
 		//Scale for each device
 		if(msg.GetActualDevice() == COM.Device.Pen){
