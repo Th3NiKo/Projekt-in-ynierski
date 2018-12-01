@@ -52,7 +52,18 @@ public class PercDirect : MonoBehaviour
             deltas = msg.LoadDeltas();
 
             float eps = 2;
-
+            if (deltas.x >= -eps && deltas.x <= eps)
+            {
+                deltas.x = 0;
+            }
+            if (deltas.y >= -eps && deltas.y <= eps)
+            {
+                deltas.y = 0;
+            }
+            if (deltas.z >= -eps && deltas.z <= eps)
+            {
+                deltas.z = 0;
+            }
 
             Vector3 newPos = new Vector3(transform.position.x + (deltas.x / Divide), transform.position.y + (deltas.y / Divide), transform.position.z - (deltas.z / Divide));
             newPos = new Vector3(Mathf.Clamp(newPos.x, minMaxX.x, minMaxX.y),
