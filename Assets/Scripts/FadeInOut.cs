@@ -43,9 +43,9 @@ using UnityEngine.UI;
                 StartCoroutine("FadeOut", HangTime);
             }
 
-            timer += Time.deltaTime;
+            timer += -Time.deltaTime;
             var c = this.GetComponent<Image>().color;
-            c.a = timer;
+            c.a = timer+deltaTime-65f;
             this.GetComponent<Image>().color = c;
         }
 
